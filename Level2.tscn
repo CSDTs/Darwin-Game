@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Icons and things/glow/glow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Backgrounds/wedgwood_house_map_floor.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons and things/glow/glow.gd" type="Script" id=4]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="wedgwood_house_map_floor" type="Sprite" parent="."]
+position = Vector2( 515.234, 319.363 )
+scale = Vector2( 2.31291, 2.26992 )
+texture = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 58.8436, 322.947 )
+rotation = 1.5708
+scale = Vector2( 0.14, 0.14 )
+
+[node name="glow" parent="." instance=ExtResource( 2 )]
+position = Vector2( 345.442, 190.945 )
+scale = Vector2( 0.14, 0.14 )
+script = ExtResource( 4 )
+
+[node name="box2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 519.683, 410.276 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 4 )
+[connection signal="hit" from="Player" to="box2" method="_on_Player_hit"]
+[connection signal="hit" from="Player" to="glow" method="_on_Player_hit"]
+[connection signal="body_entered" from="glow" to="Player" method="_on_box1_body_entered"]
+[connection signal="body_entered" from="box2" to="Player" method="_on_box2_body_entered"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Backgrounds/hallway_background-04.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Icons and things/glow/glow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Icons and things/glow/glow.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 42.2601, 10 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.521569, 1 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="hallway_background-04" type="Sprite" parent="."]
+position = Vector2( 513.782, 324.606 )
+scale = Vector2( 1.06264, 1 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="hallway_background-04"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hallway_background-04/Area2D"]
+position = Vector2( -192.828, 72.1628 )
+shape = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 81.0724, 318.051 )
+rotation = -1.5708
+scale = Vector2( 0.14, 0.14 )
+
+[node name="glow" parent="." instance=ExtResource( 3 )]
+position = Vector2( 242.325, 315.378 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 4 )
+
+[node name="Items" type="Panel" parent="glow"]
+visible = false
+margin_left = -537.0
+margin_top = -1235.0
+margin_right = 3237.0
+margin_bottom = 943.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="hit" from="Player" to="glow" method="_on_Player_hit"]
+[connection signal="body_entered" from="glow" to="Player" method="_on_glow_body_entered"]
