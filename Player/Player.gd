@@ -48,10 +48,10 @@ func _on_glow_body_entered(body):
 
 
 func _on_box1_body_entered(body):
-	emit_signal("hit")
+	emit_signal("hitl2")
 	$CollisionShape2D.set_deferred("disabled", true)
 
 
 func _on_box2_body_entered(body):
-	emit_signal("hit")
+	emit_signal("hitl22")
 	$CollisionShape2D.set_deferred("disabled", true)

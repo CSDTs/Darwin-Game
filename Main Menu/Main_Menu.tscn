@@ -24,14 +24,17 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="Main_Menu" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 1.904
+anchor_bottom = 2.0
+margin_right = 0.303955
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 court1 = "res://Courtroom1.tscn"
 level1 = "res://Level1.tscn"
+level2 = "res://Level2.tscn"
+level3 = "res://Level3.tscn"
 
 [node name="Start_Menu" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.901961 )
@@ -42,54 +45,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title_Label" type="Label" parent="Start_Menu"]
-margin_left = 20.0
-margin_top = 10.0
-margin_right = 185.0
-margin_bottom = 62.0
-rect_scale = Vector2( 1.4, 1.4 )
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 3
-custom_constants/shadow_offset_y = 3
-text = "Charles Darwin!"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Title_Screen" type="Sprite" parent="Start_Menu"]
-position = Vector2( 510.624, 299.385 )
-scale = Vector2( 0.950837, 0.825198 )
+position = Vector2( 980.004, 541.58 )
+scale = Vector2( 1.80765, 1.51369 )
 texture = ExtResource( 3 )
 
-[node name="Button_Open_Godot" type="Button" parent="Start_Menu"]
-margin_left = 445.902
-margin_top = 467.0
-margin_right = 577.902
-margin_bottom = 519.0
-text = "Open Godot"
+[node name="Button_CSDT" type="Button" parent="Start_Menu"]
+margin_left = 431.0
+margin_top = 922.0
+margin_right = 655.0
+margin_bottom = 974.0
+text = "Open CSDT website"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Start" type="Button" parent="Start_Menu"]
-margin_left = 349.264
-margin_top = 393.861
-margin_right = 670.264
-margin_bottom = 459.861
+margin_left = 65.3279
+margin_top = 912.998
+margin_right = 386.328
+margin_bottom = 978.998
 text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Quit" type="Button" parent="Start_Menu"]
-margin_left = 450.502
-margin_top = 530.007
-margin_right = 577.502
-margin_bottom = 584.007
+margin_left = 709.011
+margin_top = 922.008
+margin_right = 836.011
+margin_bottom = 976.008
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -98,8 +83,8 @@ __meta__ = {
 [node name="Level_Select_Menu" type="Panel" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.901961 )
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 1958.0
+margin_bottom = 1195.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -120,22 +105,47 @@ align = 1
 valign = 1
 
 [node name="Button_Back" type="Button" parent="Level_Select_Menu"]
-margin_left = 18.8988
-margin_top = 537.986
-margin_right = 165.899
-margin_bottom = 582.986
+margin_left = 27.0
+margin_top = 1055.0
+margin_right = 365.0
+margin_bottom = 1164.0
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Level1" type="Button" parent="Level_Select_Menu"]
-margin_left = 49.1857
-margin_top = 168.656
-margin_right = 285.186
-margin_bottom = 324.656
+margin_left = 125.573
+margin_top = 342.092
+margin_right = 535.573
+margin_bottom = 852.092
 text = "Level 1"
 icon = ExtResource( 4 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_Level2" type="Button" parent="Level_Select_Menu"]
+margin_left = 778.422
+margin_top = 392.67
+margin_right = 1074.42
+margin_bottom = 808.67
+text = "Level 2"
+icon = ExtResource( 4 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_Level3" type="Button" parent="Level_Select_Menu"]
+margin_left = 1306.04
+margin_top = 452.141
+margin_right = 1566.04
+margin_bottom = 758.141
+text = "Level 3"
+icon = ExtResource( 4 )
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

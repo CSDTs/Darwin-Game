@@ -14,8 +14,8 @@ bg_color = Color( 0.6, 0.6, 0.521569, 1 )
 [node name="Node2D" type="Node2D"]
 
 [node name="hallway_background-04" type="Sprite" parent="."]
-position = Vector2( 513.782, 324.606 )
-scale = Vector2( 1.06264, 1 )
+position = Vector2( 964.162, 545.48 )
+scale = Vector2( 1.99305, 1.50783 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="hallway_background-04"]
@@ -25,21 +25,21 @@ position = Vector2( -192.828, 72.1628 )
 shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 81.0724, 318.051 )
+position = Vector2( 104.857, 524.973 )
 rotation = -1.5708
-scale = Vector2( 0.14, 0.14 )
+scale = Vector2( 0.23, 0.23 )
 
 [node name="glow" parent="." instance=ExtResource( 3 )]
-position = Vector2( 242.325, 315.378 )
-scale = Vector2( 0.2, 0.2 )
+position = Vector2( 539.627, 527.057 )
+scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 4 )
 
-[node name="Items" type="Panel" parent="glow"]
+[node name="Items_Level1" type="Panel" parent="glow"]
 visible = false
-margin_left = -537.0
-margin_top = -1235.0
-margin_right = 3237.0
-margin_bottom = 943.0
+margin_left = -469.804
+margin_top = -966.217
+margin_right = 3304.2
+margin_bottom = 1211.78
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

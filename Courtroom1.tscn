@@ -5,8 +5,6 @@
 [ext_resource path="res://Assets/Character Pictures/Pat_Character_Portrait (2).png" type="Texture" id=3]
 [ext_resource path="res://Assets/Character Pictures/Judge_Final.png" type="Texture" id=4]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "Fade In Detective"
 
@@ -38,14 +36,19 @@ texture = ExtResource( 3 )
 
 [node name="Popup" type="Popup" parent="AnimationPlayer"]
 visible = true
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 73.0
+margin_top = 32.0
+margin_right = 298.0
+margin_bottom = 126.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RichTextLabel" type="RichTextLabel" parent="AnimationPlayer/Popup"]
-margin_left = 669.636
-margin_top = 13.2274
-margin_right = 905.636
-margin_bottom = 122.227
+margin_left = 602.636
+margin_top = -20.7726
+margin_right = 838.636
+margin_bottom = 88.227
 text = "Charles Darwin, we are the Time Travel Court. You have been transported to the year 2093 to stand trial. The prosecution claims you invented the theory of evolution to support racism"
 __meta__ = {
 "_edit_use_anchors_": false
