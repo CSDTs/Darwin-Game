@@ -46,8 +46,8 @@ __meta__ = {
 }
 
 [node name="Title_Screen" type="Sprite" parent="Start_Menu"]
-position = Vector2( 980.004, 541.58 )
-scale = Vector2( 1.80765, 1.51369 )
+position = Vector2( 976.641, 541.58 )
+scale = Vector2( 1.81291, 1.51369 )
 texture = ExtResource( 3 )
 
 [node name="Button_CSDT" type="Button" parent="Start_Menu"]

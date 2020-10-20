@@ -13,5 +13,5 @@ func _ready():
 func load_new_scene(new_scene_path):
 	get_tree().change_scene(new_scene_path)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
+
 #	pass

@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Backgrounds/hallway_background-04.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Icons and things/glow/glow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Icons and things/glow/glow.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Icons and things/portrait.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Icons and things/bone (1).png" type="Texture" id=6]
+[ext_resource path="res://Assets/Icons and things/rock.png" type="Texture" id=7]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 42.2601, 10 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 487.139, 10 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.6, 0.6, 0.521569, 1 )
 
 [node name="Node2D" type="Node2D"]
@@ -18,11 +21,19 @@ position = Vector2( 964.162, 545.48 )
 scale = Vector2( 1.99305, 1.50783 )
 texture = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="hallway_background-04"]
+[node name="StaticBody2D" type="StaticBody2D" parent="hallway_background-04"]
+position = Vector2( -483.762, -361.765 )
+scale = Vector2( 0.501744, 0.663205 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hallway_background-04/Area2D"]
-position = Vector2( -192.828, 72.1628 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hallway_background-04/StaticBody2D"]
+position = Vector2( 959.749, 667.759 )
+scale = Vector2( 1.99305, 1.50783 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hallway_background-04/StaticBody2D"]
+position = Vector2( 959.749, 410.759 )
+scale = Vector2( 1.99305, 1.50783 )
+shape = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 104.857, 524.973 )
@@ -36,13 +47,27 @@ script = ExtResource( 4 )
 
 [node name="Items_Level1" type="Panel" parent="glow"]
 visible = false
-margin_left = -469.804
-margin_top = -966.217
-margin_right = 3304.2
-margin_bottom = 1211.78
-custom_styles/panel = SubResource( 2 )
+margin_left = -1548.0
+margin_top = -1566.0
+margin_right = 4309.0
+margin_bottom = 1581.0
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="hit" from="Player" to="glow" method="_on_Player_hit"]
-[connection signal="body_entered" from="glow" to="Player" method="_on_glow_body_entered"]
+
+[node name="Sprite" type="Sprite" parent="glow/Items_Level1"]
+position = Vector2( 3096.77, 333.818 )
+scale = Vector2( 4.80089, 7.66624 )
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="glow/Items_Level1"]
+position = Vector2( 1367.99, 2097.37 )
+scale = Vector2( 4.53494, 4.59185 )
+texture = ExtResource( 5 )
+
+[node name="rock" type="Sprite" parent="glow/Items_Level1"]
+position = Vector2( 4267.45, 2153.09 )
+scale = Vector2( 5.4156, 5.69996 )
+texture = ExtResource( 7 )
+[connection signal="body_entered" from="glow" to="glow" method="_on_glow_body_entered"]

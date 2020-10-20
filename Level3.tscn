@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Backgrounds/beagle.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Icons and things/glow/glow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Icons and things/glow/glow.gd" type="Script" id=4]
+[ext_resource path="res://Assets/NPCs/Captain_top.png" type="Texture" id=5]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 59.563
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,6 +19,7 @@ texture = ExtResource( 1 )
 [node name="glow2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 996.286, 768.801 )
 scale = Vector2( 0.3, 0.3 )
+script = ExtResource( 4 )
 
 [node name="glow" parent="." instance=ExtResource( 2 )]
 position = Vector2( 536.585, 383.115 )
@@ -25,3 +30,20 @@ script = ExtResource( 4 )
 position = Vector2( 207.042, 536.686 )
 rotation = 1.5708
 scale = Vector2( 0.23, 0.23 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 63.3385, 333.46, 454.102, 182.441, 1118.59, 93.7166, 1313.03, 105.043, 1501.8, 176.777, 1630.17, 278.716, 1705.68, 390.093, 1902, 548.664, 1686.8, 711.01, 1603.74, 831.826, 1464.05, 937.539, 1267.72, 997.947, 967.569, 980.958, 388.031, 884.683, 70.8895, 771.418, 67.114, 352.338, 25.5836, 358.001, 4.81839, 801.622, 480.531, 1114.99, 1686.8, 973.407, 1935.98, 548.664, 1358.33, -4.44624, 554.153, -8.22174, 269.103, 99.3799 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Area2D"]
+position = Vector2( 1608.36, 533.289 )
+rotation = 4.71239
+scale = Vector2( 0.300944, 0.402214 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1606.47, 539.896 )
+shape = SubResource( 1 )

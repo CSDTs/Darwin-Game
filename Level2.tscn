@@ -1,9 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Icons and things/glow/glow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Backgrounds/wedgwood_house_map_floor.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons and things/glow/glow.gd" type="Script" id=4]
+[ext_resource path="res://Assets/NPCs/Josiah_Wedgewood_Sprite-01.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 233.226, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 25.8068, 15.1196 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 52.2208
+height = 44.2891
 
 [node name="Node2D" type="Node2D"]
 
@@ -11,6 +22,32 @@
 position = Vector2( 995.386, 523.701 )
 scale = Vector2( 4.31354, 3.40513 )
 texture = ExtResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wedgwood_house_map_floor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wedgwood_house_map_floor/StaticBody2D"]
+position = Vector2( 0.389908, -112.609 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="wedgwood_house_map_floor/StaticBody2D"]
+position = Vector2( 0.389908, 113.814 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="wedgwood_house_map_floor/StaticBody2D"]
+position = Vector2( -125.544, -88.0076 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="wedgwood_house_map_floor/StaticBody2D"]
+position = Vector2( 125.965, -88.0076 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="wedgwood_house_map_floor/StaticBody2D"]
+position = Vector2( -125.122, 90.2901 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="wedgwood_house_map_floor/StaticBody2D"]
+position = Vector2( 125.965, 90.2901 )
+shape = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 127.797, 526.444 )
@@ -36,7 +73,17 @@ margin_bottom = 1259.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="hit" from="Player" to="box2" method="_on_Player_hitl22"]
-[connection signal="hit" from="Player" to="box1" method="_on_Player_hitl2"]
-[connection signal="body_entered" from="box2" to="Player" method="_on_box2_body_entered"]
-[connection signal="body_entered" from="box1" to="Player" method="_on_box1_body_entered"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Josiah_Wedgewood_Sprite-01" type="Sprite" parent="Area2D"]
+position = Vector2( 1821.47, 531.92 )
+rotation = -1.5708
+scale = Vector2( 0.340422, 0.40203 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1829.79, 529.764 )
+shape = SubResource( 3 )
+[connection signal="body_entered" from="box2" to="box2" method="_on_box2_body_entered"]
+[connection signal="body_entered" from="box1" to="box1" method="_on_box1_body_entered"]
