@@ -8,10 +8,10 @@
 [ext_resource path="res://Assets/Icons and things/bone (1).png" type="Texture" id=6]
 [ext_resource path="res://Assets/Icons and things/rock.png" type="Texture" id=7]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 487.139, 10 )
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.6, 0.6, 0.521569, 1 )
 
 [node name="Node2D" type="Node2D"]
@@ -28,12 +28,12 @@ scale = Vector2( 0.501744, 0.663205 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway_background-04/StaticBody2D"]
 position = Vector2( 959.749, 667.759 )
 scale = Vector2( 1.99305, 1.50783 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="hallway_background-04/StaticBody2D"]
 position = Vector2( 959.749, 410.759 )
 scale = Vector2( 1.99305, 1.50783 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 104.857, 524.973 )
@@ -51,7 +51,7 @@ margin_left = -1548.0
 margin_top = -1566.0
 margin_right = 4309.0
 margin_bottom = 1581.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

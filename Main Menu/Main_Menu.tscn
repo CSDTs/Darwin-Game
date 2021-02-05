@@ -38,43 +38,43 @@ level3 = "res://Level3.tscn"
 
 [node name="Start_Menu" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.901961 )
-margin_right = 1024.0
-margin_bottom = 597.0
+margin_right = 1280.0
+margin_bottom = 720.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title_Screen" type="Sprite" parent="Start_Menu"]
-position = Vector2( 976.641, 541.58 )
-scale = Vector2( 1.81291, 1.51369 )
+position = Vector2( 639.179, 361.748 )
+scale = Vector2( 1.18503, 1.01416 )
 texture = ExtResource( 3 )
 
 [node name="Button_CSDT" type="Button" parent="Start_Menu"]
-margin_left = 431.0
-margin_top = 922.0
-margin_right = 655.0
-margin_bottom = 974.0
+margin_left = 419.899
+margin_top = 622.281
+margin_right = 643.899
+margin_bottom = 674.281
 text = "Open CSDT website"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Start" type="Button" parent="Start_Menu"]
-margin_left = 65.3279
-margin_top = 912.998
-margin_right = 386.328
-margin_bottom = 978.998
+margin_left = 67.5481
+margin_top = 617.719
+margin_right = 388.548
+margin_bottom = 683.719
 text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Quit" type="Button" parent="Start_Menu"]
-margin_left = 709.011
-margin_top = 922.008
-margin_right = 836.011
-margin_bottom = 976.008
+margin_left = 697.91
+margin_top = 622.288
+margin_right = 824.91
+margin_bottom = 676.288
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
