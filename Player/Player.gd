@@ -29,7 +29,7 @@ func get_input():
 	else:
 		$AnimatedSprite.stop()
 		
-
+#Test
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)

@@ -46,35 +46,35 @@ __meta__ = {
 }
 
 [node name="Title_Screen" type="Sprite" parent="Start_Menu"]
-position = Vector2( 639.179, 361.748 )
-scale = Vector2( 1.18503, 1.01416 )
+position = Vector2( 639.854, 360.398 )
+scale = Vector2( 1.18608, 1.01416 )
 texture = ExtResource( 3 )
 
 [node name="Button_CSDT" type="Button" parent="Start_Menu"]
-margin_left = 419.899
-margin_top = 622.281
-margin_right = 643.899
-margin_bottom = 674.281
+margin_left = 432.046
+margin_top = 620.931
+margin_right = 656.046
+margin_bottom = 672.931
 text = "Open CSDT website"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Start" type="Button" parent="Start_Menu"]
-margin_left = 67.5481
-margin_top = 617.719
-margin_right = 388.548
-margin_bottom = 683.719
+margin_left = 105.338
+margin_top = 613.67
+margin_right = 426.338
+margin_bottom = 679.67
 text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Quit" type="Button" parent="Start_Menu"]
-margin_left = 697.91
-margin_top = 622.288
-margin_right = 824.91
-margin_bottom = 676.288
+margin_left = 668.218
+margin_top = 618.239
+margin_right = 795.218
+margin_bottom = 672.239
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
