@@ -3,7 +3,7 @@ extends Control
 var start_menu
 var level_select_menu
 
-
+#These are scenes
 export (String, FILE) var court1
 export (String, FILE) var level1
 export (String, FILE) var level2
