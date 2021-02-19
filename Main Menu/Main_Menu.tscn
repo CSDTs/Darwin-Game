@@ -24,9 +24,12 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="Main_Menu" type="Control"]
-anchor_right = 1.904
-anchor_bottom = 2.0
-margin_right = 0.303955
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 12.0
+margin_bottom = 11.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -38,43 +41,43 @@ level3 = "res://Level3.tscn"
 
 [node name="Start_Menu" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.901961 )
-margin_right = 1280.0
-margin_bottom = 720.0
+margin_right = 1024.0
+margin_bottom = 597.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title_Screen" type="Sprite" parent="Start_Menu"]
-position = Vector2( 639.854, 360.398 )
-scale = Vector2( 1.18608, 1.01416 )
+position = Vector2( 513.729, 304.712 )
+scale = Vector2( 0.944339, 0.833186 )
 texture = ExtResource( 3 )
 
 [node name="Button_CSDT" type="Button" parent="Start_Menu"]
-margin_left = 432.046
-margin_top = 620.931
-margin_right = 656.046
-margin_bottom = 672.931
+margin_left = 365.0
+margin_top = 500.0
+margin_right = 665.0
+margin_bottom = 550.0
 text = "Open CSDT website"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Start" type="Button" parent="Start_Menu"]
-margin_left = 105.338
-margin_top = 613.67
-margin_right = 426.338
-margin_bottom = 679.67
+margin_left = 25.0
+margin_top = 500.0
+margin_right = 325.0
+margin_bottom = 550.0
 text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Quit" type="Button" parent="Start_Menu"]
-margin_left = 668.218
-margin_top = 618.239
-margin_right = 795.218
-margin_bottom = 672.239
+margin_left = 700.0
+margin_top = 500.0
+margin_right = 1000.0
+margin_bottom = 550.0
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,8 +86,8 @@ __meta__ = {
 [node name="Level_Select_Menu" type="Panel" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.901961 )
-margin_right = 1958.0
-margin_bottom = 1195.0
+margin_right = 1036.0
+margin_bottom = 608.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -105,20 +108,20 @@ align = 1
 valign = 1
 
 [node name="Button_Back" type="Button" parent="Level_Select_Menu"]
-margin_left = 27.0
-margin_top = 1055.0
-margin_right = 365.0
-margin_bottom = 1164.0
+margin_left = 49.0
+margin_top = 505.0
+margin_right = 249.0
+margin_bottom = 555.0
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Level1" type="Button" parent="Level_Select_Menu"]
-margin_left = 125.573
-margin_top = 342.092
-margin_right = 535.573
-margin_bottom = 852.092
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 300.0
+margin_bottom = 450.0
 text = "Level 1"
 icon = ExtResource( 4 )
 expand_icon = true
@@ -127,10 +130,10 @@ __meta__ = {
 }
 
 [node name="Button_Level2" type="Button" parent="Level_Select_Menu"]
-margin_left = 778.422
-margin_top = 392.67
-margin_right = 1074.42
-margin_bottom = 808.67
+margin_left = 400.0
+margin_top = 50.0
+margin_right = 650.0
+margin_bottom = 450.0
 text = "Level 2"
 icon = ExtResource( 4 )
 expand_icon = true
@@ -139,10 +142,10 @@ __meta__ = {
 }
 
 [node name="Button_Level3" type="Button" parent="Level_Select_Menu"]
-margin_left = 1306.04
-margin_top = 452.141
-margin_right = 1566.04
-margin_bottom = 758.141
+margin_left = 731.0
+margin_top = 50.0
+margin_right = 981.0
+margin_bottom = 450.0
 text = "Level 3"
 icon = ExtResource( 4 )
 expand_icon = true

@@ -17,8 +17,8 @@ bg_color = Color( 0.6, 0.6, 0.521569, 1 )
 [node name="Node2D" type="Node2D"]
 
 [node name="hallway_background-04" type="Sprite" parent="."]
-position = Vector2( 626.577, 358.283 )
-scale = Vector2( 1.34397, 0.999525 )
+position = Vector2( 509.194, 304.497 )
+scale = Vector2( 1.05718, 0.832878 )
 texture = ExtResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="hallway_background-04"]
@@ -36,13 +36,13 @@ scale = Vector2( 1.99305, 1.50783 )
 shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 90.8442, 354.728 )
+position = Vector2( 96.8576, 306.988 )
 rotation = -1.5708
-scale = Vector2( 0.23, 0.23 )
+scale = Vector2( 0.15, 0.15 )
 
 [node name="glow" parent="." instance=ExtResource( 3 )]
-position = Vector2( 397.38, 354.278 )
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( 671.011, 307.073 )
+scale = Vector2( 0.1, 0.1 )
 script = ExtResource( 4 )
 
 [node name="Items_Level1" type="Panel" parent="glow"]

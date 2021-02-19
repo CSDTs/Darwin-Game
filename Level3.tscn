@@ -12,38 +12,40 @@ radius = 59.563
 [node name="Node2D" type="Node2D"]
 
 [node name="beagle" type="Sprite" parent="."]
-position = Vector2( 955.778, 542.98 )
-scale = Vector2( 1.77292, 3.39034 )
+position = Vector2( 510.194, 300.922 )
+scale = Vector2( 0.947765, 1.86796 )
 texture = ExtResource( 1 )
 
 [node name="glow2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 996.286, 768.801 )
+position = Vector2( 465.873, 417.083 )
 scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 4 )
 
 [node name="glow" parent="." instance=ExtResource( 2 )]
-position = Vector2( 536.585, 383.115 )
+position = Vector2( 579.132, 136.345 )
 scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 207.042, 536.686 )
+position = Vector2( 119.112, 312.608 )
 rotation = 1.5708
 scale = Vector2( 0.23, 0.23 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( -32.2506, -20.1117 )
+scale = Vector2( 0.56881, 0.591887 )
 polygon = PoolVector2Array( 63.3385, 333.46, 454.102, 182.441, 1118.59, 93.7166, 1313.03, 105.043, 1501.8, 176.777, 1630.17, 278.716, 1705.68, 390.093, 1902, 548.664, 1686.8, 711.01, 1603.74, 831.826, 1464.05, 937.539, 1267.72, 997.947, 967.569, 980.958, 388.031, 884.683, 70.8895, 771.418, 67.114, 352.338, 25.5836, 358.001, 4.81839, 801.622, 480.531, 1114.99, 1686.8, 973.407, 1935.98, 548.664, 1358.33, -4.44624, 554.153, -8.22174, 269.103, 99.3799 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Area2D"]
-position = Vector2( 1608.36, 533.289 )
+position = Vector2( 870.887, 317.72 )
 rotation = 4.71239
 scale = Vector2( 0.300944, 0.402214 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 1606.47, 539.896 )
+position = Vector2( 765.596, 307.855 )
 shape = SubResource( 1 )
