@@ -1,32 +1,35 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Assets/Backgrounds/beagle.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Icons and things/glow/glow.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Icons and things/glow/glow.gd" type="Script" id=4]
-[ext_resource path="res://Assets/NPCs/Captain_top.png" type="Texture" id=5]
+[ext_resource path="res://Assets/NPCs/Captain_top.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Icons and things/glow/glow.gd" type="Script" id=2]
+[ext_resource path="res://Level3.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Icons and things/glow/glow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Backgrounds/beagle.png" type="Texture" id=6]
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 59.563
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="beagle" type="Sprite" parent="."]
 position = Vector2( 510.194, 300.922 )
 scale = Vector2( 0.947765, 1.86796 )
-texture = ExtResource( 1 )
+texture = ExtResource( 6 )
 
-[node name="glow2" parent="." instance=ExtResource( 2 )]
+[node name="glow2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 465.873, 417.083 )
 scale = Vector2( 0.3, 0.3 )
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 
-[node name="glow" parent="." instance=ExtResource( 2 )]
+[node name="glow" parent="." instance=ExtResource( 4 )]
 position = Vector2( 579.132, 136.345 )
 scale = Vector2( 0.3, 0.3 )
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
+[node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 119.112, 312.608 )
 rotation = 1.5708
 scale = Vector2( 0.23, 0.23 )
@@ -44,8 +47,19 @@ polygon = PoolVector2Array( 63.3385, 333.46, 454.102, 182.441, 1118.59, 93.7166,
 position = Vector2( 870.887, 317.72 )
 rotation = 4.71239
 scale = Vector2( 0.300944, 0.402214 )
-texture = ExtResource( 5 )
+texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 765.596, 307.855 )
 shape = SubResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 15.0
+margin_right = 150.0
+margin_bottom = 55.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -14,13 +14,12 @@ func _ready():
 	start_menu = $Start_Menu
 	level_select_menu = $Level_Select_Menu
 
-
 	$Start_Menu/Button_Start.connect("pressed", self, "start_menu_button_pressed", ["start"])
 	$Start_Menu/Button_CSDT.connect("pressed", self, "start_menu_button_pressed", ["open_CSDT"])
 
 	$Start_Menu/Button_Quit.connect("pressed", self, "start_menu_button_pressed", ["quit"])
 
-
+	#$ButtonLevel1.connect("pressed", self, "level_select_menu_button_pressed", ["back"])
 	$Level_Select_Menu/Button_Back.connect("pressed", self, "level_select_menu_button_pressed", ["back"])
 	$Level_Select_Menu/Button_Level1.connect("pressed", self, "level_select_menu_button_pressed", ["level_one"])
 	$Level_Select_Menu/Button_Level2.connect("pressed", self, "level_select_menu_button_pressed", ["level_two"])
@@ -32,9 +31,6 @@ func _ready():
 	$Options_Menu/Check_Button_Debug.connect("pressed", self, "options_menu_button_pressed", ["debug"])
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-
-
 
 func start_menu_button_pressed(button_name):
 	if button_name == "start":
