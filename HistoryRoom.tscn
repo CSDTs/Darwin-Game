@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/History/history.tres" type="TileSet" id=1]
+[ext_resource path="res://Lawyer/Lawyer.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2( -19.1253, 108.637 )
+scale = Vector2( 0.6, 0.6 )
+z_index = -1
+mode = 2
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 20, 20 )
+cell_custom_transform = Transform2D( 20, 0, 0, 20, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -524295, 4, 0 )
+
+[node name="HallwayDoor" type="TileMap" parent="."]
+position = Vector2( 0.214, 354.954 )
+scale = Vector2( 1, 0.639 )
+z_index = -1
+mode = 2
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 20, 20 )
+cell_custom_transform = Transform2D( 20, 0, 0, 20, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 851978, 1073741824, 0 )
+
+[node name="Lawyer" parent="." instance=ExtResource( 2 )]
+position = Vector2( 251.264, 506.316 )

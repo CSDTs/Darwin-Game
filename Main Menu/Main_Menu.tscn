@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main Menu/Main_Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/Titillium-Regular.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://Main Menu/Title_Screen.png" type="Texture" id=3]
+[ext_resource path="res://Main Menu/Title_Screen_720x480-02.png" type="Texture" id=3]
 [ext_resource path="res://Main Menu/troll.png" type="Texture" id=4]
+[ext_resource path="res://Main Menu/Instruction_Screen_720x480-02.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.199219, 0.199219, 0.199219, 1 )
@@ -26,10 +27,6 @@ font_data = ExtResource( 2 )
 [node name="Main_Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 12.0
-margin_bottom = 11.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -41,44 +38,81 @@ level3 = "res://Level3.tscn"
 
 [node name="Start_Menu" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.901961 )
-margin_right = 1024.0
-margin_bottom = 597.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title_Screen" type="Sprite" parent="Start_Menu"]
-position = Vector2( 513.729, 304.712 )
-scale = Vector2( 0.944339, 0.833186 )
+position = Vector2( -1.13892, 0 )
+scale = Vector2( 0.32049, 0.32049 )
 texture = ExtResource( 3 )
+centered = false
 
 [node name="Button_CSDT" type="Button" parent="Start_Menu"]
-margin_left = 365.0
-margin_top = 500.0
-margin_right = 665.0
-margin_bottom = 550.0
+margin_left = 259.184
+margin_top = 453.083
+margin_right = 434.184
+margin_bottom = 503.083
 text = "Open CSDT website"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Start" type="Button" parent="Start_Menu"]
-margin_left = 25.0
-margin_top = 500.0
-margin_right = 325.0
-margin_bottom = 550.0
+margin_left = 11.5798
+margin_top = 453.083
+margin_right = 186.58
+margin_bottom = 503.083
 text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button_LevelSelect" type="Button" parent="Start_Menu"]
+margin_left = 515.883
+margin_top = 453.083
+margin_right = 690.883
+margin_bottom = 503.083
+text = "Select Level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button_Quit" type="Button" parent="Start_Menu"]
-margin_left = 700.0
-margin_top = 500.0
-margin_right = 1000.0
-margin_bottom = 550.0
+margin_left = 770.88
+margin_top = 453.083
+margin_right = 945.88
+margin_bottom = 503.083
 text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Panel" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.901961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="Sprite" parent="Instructions"]
+position = Vector2( -1.13892, 0 )
+scale = Vector2( 0.32049, 0.32049 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Button_Continue" type="Button" parent="Instructions"]
+margin_left = 396.966
+margin_top = 453.083
+margin_right = 571.966
+margin_bottom = 503.083
+text = "Press Space to Continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }

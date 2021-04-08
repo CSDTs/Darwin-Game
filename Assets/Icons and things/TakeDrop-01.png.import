@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bone (1).png-c6e93aaad61b53598528feabd8ec6d23.stex"
+path="res://.import/TakeDrop-01.png-735ddf1d1bc4479614f6e144cde056a0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons and things/bone (1).png"
-dest_files=[ "res://.import/bone (1).png-c6e93aaad61b53598528feabd8ec6d23.stex" ]
+source_file="res://Assets/Icons and things/TakeDrop-01.png"
+dest_files=[ "res://.import/TakeDrop-01.png-735ddf1d1bc4479614f6e144cde056a0.stex" ]
 
 [params]
 
