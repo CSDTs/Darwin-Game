@@ -12,6 +12,8 @@ func _ready():
 
 func _process(delta):
 	screen_size = get_viewport_rect().size
+	if Input.is_action_just_pressed("drop"):
+		print('d pressed')
 
 func get_input():
 	velocity = Vector2()
@@ -44,19 +46,3 @@ func _physics_process(delta):
 	elif velocity.y != 0:
 		$AnimatedSprite.animation = "walk"
 		$AnimatedSprite.flip_v = velocity.y > 0
-
-
-
-#func _on_glow_body_entered(body):
-#	emit_signal("hit")
-#	$CollisionShape2D.set_deferred("disabled", true) # Replace with function body.
-#
-#
-#func _on_box1_body_entered(body):
-#	emit_signal("hitl2")
-#	$CollisionShape2D.set_deferred("disabled", true)
-#
-#
-#func _on_box2_body_entered(body):
-#	emit_signal("hitl22")
-#	$CollisionShape2D.set_deferred("disabled", true)

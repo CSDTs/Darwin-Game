@@ -19,3 +19,13 @@ func _ready():
 func _on_Button_pressed():
 	get_tree().change_scene("res://Main Menu/Main_Menu.tscn")
 	#get_node("/root/Globals").load_new_scene(Main_Menu)
+
+
+
+
+func _on_RigidBody2D_body_shape_entered(body_id, body, body_shape, local_shape):
+	print('hit') # Replace with function body.
+
+
+func _on_Area2D_body_entered(body):
+	print('hit') # Replace with function body.

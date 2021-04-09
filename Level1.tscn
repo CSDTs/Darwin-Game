@@ -19,7 +19,7 @@ bg_color = Color( 0.6, 0.6, 0.521569, 1 )
 script = ExtResource( 8 )
 
 [node name="hallway_background-04" type="Sprite" parent="."]
-position = Vector2( 509.194, 304.497 )
+position = Vector2( 509.194, 305.363 )
 scale = Vector2( 1.05718, 0.832878 )
 texture = ExtResource( 1 )
 

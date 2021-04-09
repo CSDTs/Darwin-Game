@@ -1,17 +1,21 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Icons and things/glow/glow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/NPCs/Josiah_Wedgewood_Sprite-01.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Backgrounds/wedgwood_house_map_floor.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Icons and things/glow/glow.gd" type="Script" id=5]
 [ext_resource path="res://Level2.gd" type="Script" id=6]
-[ext_resource path="res://Player/Pat_Sprite_walk2 copy.png" type="Texture" id=7]
-[ext_resource path="res://Player/Pat_Sprite_walk_x.png" type="Texture" id=8]
-[ext_resource path="res://Player/Pat_Sprite_walk_x2png.png" type="Texture" id=9]
-[ext_resource path="res://Player/Pat_Sprite_walk1 copy.png" type="Texture" id=10]
-[ext_resource path="res://Player2.gd" type="Script" id=11]
-[ext_resource path="res://RigidBody2D.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Dialog/dialog-background.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Dialog/GaramondPremrPro-Smbd.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://DialogBox.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Dialog/next-indicator.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Character Pictures/josiah_wedgwood_ii.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Character Pictures/Pat_Character_Portrait (2).png" type="Texture" id=12]
+[ext_resource path="res://DialogBoxJosiah.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Icons and things/plate.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Icons and things/Revised.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Icons and things/medallion_man.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Icons and things/teapot.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 233.226, 10 )
@@ -20,45 +24,57 @@ extents = Vector2( 233.226, 10 )
 extents = Vector2( 25.8068, 15.1196 )
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 52.2208
-height = 44.2891
+radius = 10.7364
 
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "up",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-} ]
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 45.8677
+height = 44.9293
 
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 29.4483
-height = 26.7986
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 8 )
 
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[sub_resource type="Animation" id=6]
+resource_name = "IDLE"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 317.65, 83.712 ), Vector2( 317.65, 77 ) ]
+}
 
-[sub_resource type="CapsuleShape2D" id=7]
-radius = 33.1181
-height = 53.3269
+[sub_resource type="Animation" id=7]
+resource_name = "IDLE"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 250, 100 ), Vector2( 250, 95 ) ]
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="wedgwood_house_map_floor" type="Sprite" parent="."]
-position = Vector2( 512.545, 297.642 )
+position = Vector2( 513.545, 297.642 )
 scale = Vector2( 2.20095, 2.42462 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="StaticBody2D" type="StaticBody2D" parent="wedgwood_house_map_floor"]
 
@@ -86,21 +102,36 @@ shape = SubResource( 2 )
 position = Vector2( 125.965, 90.2901 )
 shape = SubResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 90.8228, 306.545 )
-rotation = 1.5708
-scale = Vector2( 0.23, 0.23 )
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="wedgwood_house_map_floor/StaticBody2D"]
+position = Vector2( 146.166, -1.10112 )
+shape = SubResource( 3 )
 
-[node name="box2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 354.433, 503.429 )
-scale = Vector2( 0.3, 0.3 )
-script = ExtResource( 5 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 90, 300 )
+rotation = 1.5708
+scale = Vector2( 0.2, 0.2 )
+collision_layer = 3
+collision_mask = 2147483651
 
 [node name="box1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 438.041, 90.3382 )
+position = Vector2( 257.125, 183.847 )
 scale = Vector2( 0.3, 0.3 )
-script = ExtResource( 5 )
+script = ExtResource( 6 )
+
+[node name="TakeDrop" type="Sprite" parent="box1"]
+visible = false
+light_mask = 7
+position = Vector2( 848.929, 913.55 )
+scale = Vector2( 1.13067, 1.20947 )
+z_index = 1
+texture = ExtResource( 15 )
+
+[node name="plate" type="Sprite" parent="box1"]
+visible = false
+position = Vector2( 851.891, 129.555 )
+scale = Vector2( 2.19183, 2.57508 )
+z_index = 1
+texture = ExtResource( 14 )
 
 [node name="Items_Level2" type="Panel" parent="box1"]
 visible = false
@@ -112,18 +143,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Josiah" type="Area2D" parent="."]
+[node name="box2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 431.977, 496.587 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 6 )
+
+[node name="TakeDrop" type="Sprite" parent="box2"]
 visible = false
+light_mask = 7
+position = Vector2( 399.134, -193.374 )
+scale = Vector2( 1.696, 1.8142 )
+z_index = 1
+texture = ExtResource( 15 )
+
+[node name="medallion_man" type="Sprite" parent="box2"]
+visible = false
+position = Vector2( 437.785, -1376.97 )
+scale = Vector2( 3.50948, 3.98933 )
+z_index = 1
+texture = ExtResource( 16 )
+
+[node name="box3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 528.527, 154.481 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 6 )
+
+[node name="TakeDrop" type="Sprite" parent="box3"]
+visible = false
+light_mask = 7
+position = Vector2( -83.6162, 1517.15 )
+scale = Vector2( 1.696, 1.8142 )
+z_index = 1
+texture = ExtResource( 15 )
+
+[node name="teapot" type="Sprite" parent="box3"]
+visible = false
+position = Vector2( -8.85388, 430.491 )
+scale = Vector2( 3.20151, 3.60803 )
+texture = ExtResource( 17 )
+
+[node name="Josiah" type="Area2D" parent="."]
+position = Vector2( 0.893616, 0 )
+collision_layer = 3
+collision_mask = 2147483651
 
 [node name="Josiah_Wedgewood_Sprite-01" type="Sprite" parent="Josiah"]
-position = Vector2( 930.198, 317.859 )
+position = Vector2( 830.012, 296.639 )
 rotation = -1.5708
-scale = Vector2( 0.340422, 0.40203 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Josiah"]
-position = Vector2( 940.464, 315.703 )
-shape = SubResource( 3 )
+light_mask = 3
+position = Vector2( 835.331, 294.943 )
+shape = SubResource( 4 )
 
 [node name="Button" type="Button" parent="."]
 margin_left = 10.0
@@ -135,43 +208,112 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player2" type="Area2D" parent="."]
-script = ExtResource( 11 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Player2"]
-position = Vector2( 200, 300 )
-scale = Vector2( 0.3, 0.3 )
-frames = SubResource( 4 )
-animation = "walk"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
-position = Vector2( 200.818, 299.639 )
-shape = SubResource( 5 )
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-script = ExtResource( 12 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="RigidBody2D"]
-position = Vector2( 950, 315 )
-rotation = -1.5708
-scale = Vector2( 0.3, 0.3 )
-frames = SubResource( 6 )
+[node name="DialogBoxJosiah2" type="Control" parent="."]
+visible = false
+margin_left = 686.0
+margin_top = 1.0
+margin_right = 1026.0
+margin_bottom = 106.0
+script = ExtResource( 9 )
 __meta__ = {
-"_edit_group_": true
+"_edit_use_anchors_": false
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2( 958.99, 312.824 )
-shape = SubResource( 7 )
+[node name="TextureRect" type="TextureRect" parent="DialogBoxJosiah2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
 __meta__ = {
-"_edit_group_": true
+"_edit_use_anchors_": false
 }
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="RigidBody2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogBoxJosiah2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0.541176, 0.360784, 0.168627, 1 )
+bbcode_enabled = true
 __meta__ = {
-"_edit_group_": true
+"_edit_use_anchors_": false
 }
-[connection signal="body_entered" from="box2" to="box2" method="_on_box2_body_entered"]
-[connection signal="body_entered" from="box1" to="box1" method="_on_box1_body_entered"]
+
+[node name="next-indicator" type="Sprite" parent="DialogBoxJosiah2"]
+position = Vector2( 317.65, 79.4275 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogBoxJosiah2/next-indicator"]
+autoplay = "IDLE"
+anims/IDLE = SubResource( 6 )
+
+[node name="Tween" type="Tween" parent="DialogBoxJosiah2"]
+
+[node name="DialogBoxJosiah" type="Control" parent="."]
+margin_left = 265.0
+margin_top = 22.146
+margin_right = 543.0
+margin_bottom = 157.146
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PatCharacter" type="Sprite" parent="DialogBoxJosiah"]
+position = Vector2( 550, 350.283 )
+scale = Vector2( 1.38392, 1.29352 )
+texture = ExtResource( 12 )
+
+[node name="JosiahWedgwood" type="Sprite" parent="DialogBoxJosiah"]
+position = Vector2( -50, 337.347 )
+scale = Vector2( 0.122811, 0.147532 )
+texture = ExtResource( 11 )
+
+[node name="TextureRect" type="TextureRect" parent="DialogBoxJosiah"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogBoxJosiah"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0.541176, 0.360784, 0.168627, 1 )
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="next-indicator" type="Sprite" parent="DialogBoxJosiah"]
+position = Vector2( 250, 100 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogBoxJosiah/next-indicator"]
+autoplay = "IDLE"
+anims/IDLE = SubResource( 7 )
+
+[node name="Tween" type="Tween" parent="DialogBoxJosiah"]
+[connection signal="body_entered" from="box1" to="." method="_on_box1_body_entered"]
+[connection signal="body_entered" from="box2" to="." method="_on_box2_body_entered"]
+[connection signal="body_entered" from="box3" to="." method="_on_box3_body_entered"]
+[connection signal="body_entered" from="Josiah" to="DialogBoxJosiah2" method="_on_Josiah_body_entered"]
+[connection signal="body_entered" from="Josiah" to="." method="_on_Josiah_body_entered"]
+[connection signal="body_exited" from="Josiah" to="DialogBoxJosiah2" method="_on_Josiah_body_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-[connection signal="body_exited" from="Player2" to="Player2" method="_on_Player2_body_exited"]
+[connection signal="tween_completed" from="DialogBoxJosiah2/Tween" to="DialogBoxJosiah2" method="_on_Tween_tween_completed"]
+[connection signal="tween_completed" from="DialogBoxJosiah/Tween" to="DialogBoxJosiah" method="_on_Tween_tween_completed"]

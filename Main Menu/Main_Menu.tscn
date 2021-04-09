@@ -41,8 +41,14 @@ level3 = "res://Level3.tscn"
 
 [node name="Start_Menu" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.901961 )
-margin_right = 1024.0
-margin_bottom = 597.0
+anchor_left = 0.495
+anchor_top = 0.5
+anchor_right = 0.495
+anchor_bottom = 0.5
+margin_left = -511.83
+margin_top = -304.5
+margin_right = 512.17
+margin_bottom = 292.5
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -86,8 +92,14 @@ __meta__ = {
 [node name="Level_Select_Menu" type="Panel" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.901961 )
-margin_right = 1036.0
-margin_bottom = 608.0
+anchor_left = 0.501
+anchor_top = 0.5
+anchor_right = 0.501
+anchor_bottom = 0.5
+margin_left = -518.034
+margin_top = -304.5
+margin_right = 517.966
+margin_bottom = 303.5
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
