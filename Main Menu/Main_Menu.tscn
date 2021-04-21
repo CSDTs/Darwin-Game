@@ -108,6 +108,7 @@ texture = ExtResource( 5 )
 centered = false
 
 [node name="Button_Continue" type="Button" parent="Instructions"]
+visible = false
 margin_left = 396.966
 margin_top = 453.083
 margin_right = 571.966

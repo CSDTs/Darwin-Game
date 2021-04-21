@@ -122,17 +122,20 @@ func load_dialog():
 		self.visible = false
 		if main == monro:
 			var bone = get_node("/root/Level1/Bone")
+			get_node("/root/Level1/Bone/CollisionShape2D").one_way_collision = false
 			bone.visible = true
 			var monroImages = get_node("/root/Level1/Monro/CanvasLayer/Control")
 			monroImages.visible = false
 		elif main == edmonstone:
 			var portrait = get_node("/root/Level1/Portrait")
 			portrait.visible = true
+			get_node("/root/Level1/Portrait/CollisionShape2D").one_way_collision = false
 			var edmonstoneImages = get_node("/root/Level1/Edmonstone/CanvasLayer/Control")
 			edmonstoneImages.visible = false
 		elif main == jameson:
 			var rock = get_node("/root/Level1/Rocks")
 			rock.visible = true
+			get_node("/root/Level1/Rocks/CollisionShape2D").one_way_collision = false
 			var jamesonImages = get_node("/root/Level1/Jameson/CanvasLayer/Control")
 			jamesonImages.visible = false
 		elif main == failBone:

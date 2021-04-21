@@ -10,7 +10,7 @@ onready var anim = $AnimatedSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass 
 
 func _process (delta):
 	if Input.is_action_just_pressed("interact"):
@@ -68,7 +68,6 @@ func play_animation (anim_name):
 		anim.play(anim_name)
 		
 func try_interact ():
-	
 	rayCast.cast_to = facingDir * interactDist
 	if rayCast.is_colliding():
 		if rayCast.get_collider() is KinematicBody2D:

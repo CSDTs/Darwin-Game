@@ -30,11 +30,19 @@ func _ready():
 	$Options_Menu/Button_Fullscreen.connect("pressed", self, "options_menu_button_pressed", ["fullscreen"])
 	$Options_Menu/Check_Button_VSync.connect("pressed", self, "options_menu_button_pressed", ["vsync"])
 	$Options_Menu/Check_Button_Debug.connect("pressed", self, "options_menu_button_pressed", ["debug"])
-	$Instructions/Button_Continue.connect("pressed", self, "launch_courtroom")
+#	$Instructions/Button_Continue.connect("pressed", self, "launch_courtroom")
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	OS.min_window_size = Vector2(1024, 600)
 
+func _process(delta):
+	if Input.is_action_just_pressed("interact"):
+		if instructions.visible == true:
+			launch_courtroom()
+		if start_menu.visible == true:
+			start_menu_button_pressed('run')
+	
+		
 func start_menu_button_pressed(button_name):
 	if button_name == "start":
 		level_select_menu.visible = true

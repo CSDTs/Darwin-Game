@@ -8,7 +8,7 @@ extends StaticBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$CollisionShape2D.one_way_collision = true
 	
 func _process(delta):
 	if $CanvasLayer/Control.visible == true:
@@ -57,6 +57,7 @@ func _process(delta):
 				failDialog.launch_popup()
 				failDialog.load_dialog()
 				var courtroom = get_node("/root/Level2/CanvasLayer/Courtroom")
+				courtroom.visible = true
 			elif self.name =="Page1":
 				var failDialog = get_node("/root/Level3/CanvasLayer/Control/Popup")
 				failDialog.init_conversation("Page1")

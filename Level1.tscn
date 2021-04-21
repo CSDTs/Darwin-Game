@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Lawyer/Lawyer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Teachers/Monro.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://Assets/Backgrounds/coutroom_background-01.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Character Pictures/Pat_Character_Portrait (2).png" type="Texture" id=22]
 [ext_resource path="res://Assets/Character Pictures/charles_darwin_old.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Icons and things/Progress Bar 1.png" type="Texture" id=24]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 331.308, 354.52, 329.58, 356.248, 1392.3, 352.792, 1394.03, 663.832, 1495.98, 662.104, 1497.71, 1047.45, 1485.61, 1056.09, 1039.79, 1059.54, 1041.52, 1353.3, 1186.67, 1353.3, 1184.94, 1370.58, 1053.61, 1368.86, 1053.61, 1493.65, 455.724, 1502.29, 455.724, 1787.41, 453.996, 1802.96, 341.676, 1799.5, 343.404, 2217.68, 51.3716, 2536, 47.9156, 8.92001 )
@@ -240,7 +241,8 @@ __meta__ = {
 }
 
 [node name="RockImg" type="Sprite" parent="Rocks/CanvasLayer/Control"]
-position = Vector2( 476.559, 369.167 )
+position = Vector2( 480.159, 394.817 )
+scale = Vector2( 0.764289, 0.810704 )
 texture = ExtResource( 3 )
 
 [node name="TakeDrop" type="Sprite" parent="Rocks/CanvasLayer/Control"]
@@ -284,7 +286,8 @@ __meta__ = {
 }
 
 [node name="PortraitImg" type="Sprite" parent="Portrait/CanvasLayer/Control"]
-position = Vector2( 476.559, 369.167 )
+position = Vector2( 476.559, 386.267 )
+scale = Vector2( 0.535737, 0.580007 )
 texture = ExtResource( 5 )
 
 [node name="TakeDrop" type="Sprite" parent="Portrait/CanvasLayer/Control"]
@@ -409,6 +412,12 @@ position = Vector2( 480, 268.055 )
 scale = Vector2( 1, 250 )
 texture = SubResource( 13 )
 
+[node name="Backdrop2" type="Sprite" parent="CanvasLayer/NextLevel"]
+position = Vector2( 264.309, 208.582 )
+scale = Vector2( 0.663204, 0.685547 )
+texture = ExtResource( 24 )
+centered = false
+
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/NextLevel"]
 visible = false
 anchor_left = 0.5
@@ -438,7 +447,7 @@ margin_left = -116.48
 margin_top = -23.0
 margin_right = 135.52
 margin_bottom = 19.0
-text = "Press to Start Next Level"
+text = "Press to Space to Start Next Level"
 __meta__ = {
 "_edit_use_anchors_": false
 }

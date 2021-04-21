@@ -91,6 +91,9 @@ func load_dialog():
 			teapot.visible = true
 			plate.visible = true
 			medallion.visible = true
+			get_node("/root/Level2/Teapot/CollisionShape2D").one_way_collision = false
+			get_node("/root/Level2/Plate/CollisionShape2D").one_way_collision = false
+			get_node("/root/Level2/Medallion/CollisionShape2D").one_way_collision = false
 			var uncleImages = get_node("/root/Level2/Uncle/CanvasLayer/Control")
 			uncleImages.visible = false
 		elif main == failTeapot:

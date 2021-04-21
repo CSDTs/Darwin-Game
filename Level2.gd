@@ -6,7 +6,12 @@ func _ready():
 	var back = get_node("/root/Level2/CanvasLayer/Control/Button")
 	nxtLvl.connect("pressed", self, "_nextLevel_pressed")
 	back.connect("pressed", self, "_Button_pressed")
-
+	
+func _process(delta):
+	var next = get_node("/root/Level2/CanvasLayer/NextLevel")
+	if next.visible == true && Input.is_action_just_pressed("interact"):
+		_nextLevel_pressed()
+	
 func _nextLevel_pressed():
 	get_tree().change_scene("res://Level3.tscn")
 
