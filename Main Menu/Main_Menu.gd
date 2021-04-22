@@ -35,6 +35,11 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	OS.min_window_size = Vector2(1024, 600)
 
+func _process(delta):
+	if Input.is_action_just_pressed("ui_accept"):
+		if $Instructions.visible == true:
+			get_tree().change_scene("res://Courtroom.tscn")
+		
 func start_menu_button_pressed(button_name):
 	if button_name == "start":
 		level_select_menu.visible = true
@@ -48,18 +53,18 @@ func start_menu_button_pressed(button_name):
 		#get_node("/root/Globals").load_new_scene(court1)
 
 func launch_courtroom():
-	get_node("/root/Globals").load_new_scene(court1)
+	get_tree().change_scene("res://Courtroom.tscn")
 
 func level_select_menu_button_pressed(button_name):
 	if button_name == "back":
 		start_menu.visible = true
 		level_select_menu.visible = false
 	elif button_name == "level_one":
-		get_node("/root/Globals").load_new_scene(level1)
+		get_tree().change_scene("res://Level1.tscn")
 	elif button_name == "level_two":
-		get_node("/root/Globals").load_new_scene(level2)
+		get_tree().change_scene("res://Level2.tscn")
 	elif button_name == "level_three":
-		get_node("/root/Globals").load_new_scene(level3)
+		get_tree().change_scene("res://Level3.tscn")
 
 
 

@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Dialog/Dialog.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/Raleway-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/Raleway-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Textures/indicator.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/dialogue.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=3]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 591.531, 113.087 ), Vector2( 591.531, 120 ) ]
+}
+
+[node name="Popup" type="Popup"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -316.265
+margin_top = -158.13
+margin_right = 321.735
+margin_bottom = -21.1301
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 1
+
+[node name="name-label" type="RichTextLabel" parent="."]
+margin_left = 95.3498
+margin_top = 7.22638
+margin_right = 287.35
+margin_bottom = 31.2264
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Charles Darwin[/center]"
+text = "Charles Darwin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dialog-text" type="RichTextLabel" parent="."]
+margin_left = 23.0
+margin_top = 42.0
+margin_right = 619.0
+margin_bottom = 118.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "Welcome  to Edinburg! Use the arrow keys to walk to a door, and press SPACE to enter."
+text = "Welcome  to Edinburg! Use the arrow keys to walk to a door, and press SPACE to enter."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="next-indicator" type="Sprite" parent="."]
+position = Vector2( 591.531, 113.087 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="next-indicator"]
+autoplay = "IDLE"
+anims/IDLE = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
