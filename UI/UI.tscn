@@ -1,0 +1,402 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Dialog/Dialog.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/Raleway-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Characters/darwin.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Characters/lawyer.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/indicator.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/dialogue.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Fonts/Raleway-Bold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Assets/Backgrounds/courtroom.png" type="Texture" id=8]
+[ext_resource path="res://UI/UI.gd" type="Script" id=9]
+[ext_resource path="res://Assets/UI/progress-bar-2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/UI/progress-bar-3.png" type="Texture" id=11]
+[ext_resource path="res://Assets/UI/progress-bar-1.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Characters/judge.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Characters/Prosecutor.png" type="Texture" id=14]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.976471, 0.92549, 0.803922, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.886275, 0.694118, 0.235294, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.886275, 0.815686, 0.658824, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.541176, 0.388235, 0.227451, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.94902, 0.886275, 0.745098, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.541176, 0.388235, 0.227451, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 0.94902, 0.886275, 0.745098, 0.85 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.541176, 0.388235, 0.227451, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 14
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 18
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=10]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 591.531, 113.087 ), Vector2( 591.531, 120 ) ]
+}
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 0.72549 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+width = 500
+
+[sub_resource type="DynamicFont" id=13]
+size = 22
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 30
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 9 )
+
+[node name="Courtroom" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Backdrop" type="Sprite" parent="Courtroom"]
+texture = ExtResource( 8 )
+centered = false
+
+[node name="Morris" type="Sprite" parent="Courtroom"]
+position = Vector2( 402.836, 286.736 )
+texture = ExtResource( 4 )
+
+[node name="Darwin" type="Sprite" parent="Courtroom"]
+position = Vector2( 751.559, 282.457 )
+texture = ExtResource( 3 )
+
+[node name="Court" type="Sprite" parent="Courtroom"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 640, 250 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 13 )
+
+[node name="Prosecutor" type="Sprite" parent="Courtroom"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 1000, 352 )
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 14 )
+
+[node name="CharTween" type="Tween" parent="Courtroom"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Control"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 90.0
+margin_bottom = 42.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.301961, 0.219608, 0.117647, 1 )
+custom_colors/font_color_hover = Color( 0.301961, 0.219608, 0.117647, 1 )
+custom_colors/font_color_pressed = Color( 0.301961, 0.219608, 0.117647, 1 )
+text = "‹ Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Objective" type="Panel" parent="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -450.0
+margin_top = 8.0
+margin_right = 450.0
+margin_bottom = 52.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="RichTextLabel" parent="Control/Objective"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 9.0
+margin_right = -8.0
+margin_bottom = -4.0
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.301961, 0.219608, 0.117647, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Objective: Speak with the professors and collect evidence about Darwin's early influences.[/center]"
+text = "Objective: Speak with the professors and collect evidence about Darwin's early influences."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CaseFileHint" type="Panel" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -254.0
+margin_top = -48.0
+margin_right = -14.0
+margin_bottom = -14.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/CaseFileHint"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.301961, 0.219608, 0.117647, 1 )
+text = "Press C to open Case File"
+align = 1
+valign = 1
+
+[node name="CourtroomPrompt" type="Panel" parent="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -290.0
+margin_top = 677.265
+margin_right = 290.0
+margin_bottom = 717.265
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="RichTextLabel" parent="Control/CourtroomPrompt"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 9.0
+margin_right = -10.0
+margin_bottom = -4.0
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.301961, 0.219608, 0.117647, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]All evidence collected. Press F to enter the courtroom.[/center]"
+text = "All evidence collected. Press F to enter the courtroom."
+
+[node name="Popup" type="Popup" parent="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -316.265
+margin_top = -158.13
+margin_right = 321.735
+margin_bottom = -21.1301
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control/Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 1
+
+[node name="name-label" type="RichTextLabel" parent="Control/Popup"]
+margin_left = 95.3498
+margin_top = 7.22638
+margin_right = 287.35
+margin_bottom = 31.2264
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center]Charles Darwin[/center]"
+text = "Charles Darwin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dialog-text" type="RichTextLabel" parent="Control/Popup"]
+margin_left = 23.0
+margin_top = 42.0
+margin_right = 619.0
+margin_bottom = 118.0
+custom_fonts/normal_font = SubResource( 9 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "Welcome  to Edinburg! Use the arrow keys or WASD to walk to a door, and press F to enter."
+text = "Welcome  to Edinburg! Use the arrow keys or WASD to walk to a door, and press F to enter."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="next-indicator" type="Sprite" parent="Control/Popup"]
+position = Vector2( 591.531, 113.087 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Popup/next-indicator"]
+autoplay = "IDLE"
+anims/IDLE = SubResource( 10 )
+
+[node name="Tween" type="Tween" parent="Control/Popup"]
+
+[node name="NextLevel" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Backdrop" type="Sprite" parent="NextLevel"]
+texture = ExtResource( 8 )
+centered = false
+
+[node name="Sprite" type="Sprite" parent="NextLevel"]
+position = Vector2( 640, 360 )
+scale = Vector2( 1, 250 )
+texture = SubResource( 12 )
+
+[node name="Level1" type="Sprite" parent="NextLevel"]
+visible = false
+position = Vector2( 640, 360 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 12 )
+
+[node name="Level2" type="Sprite" parent="NextLevel"]
+visible = false
+position = Vector2( 640, 360 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 10 )
+
+[node name="Level3" type="Sprite" parent="NextLevel"]
+visible = false
+position = Vector2( 640, 360 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 11 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="NextLevel"]
+anchor_left = 0.5
+anchor_top = 0.727
+anchor_right = 0.5
+anchor_bottom = 0.727
+margin_left = -129.732
+margin_top = -71.909
+margin_right = 135.268
+margin_bottom = -39.909
+custom_fonts/normal_font = SubResource( 13 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "Press Space to Continue"
+text = "Press Space to Continue"
+override_selected_font_color = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="RichTextLabel" parent="NextLevel"]
+anchor_left = 0.5
+anchor_top = 0.727
+anchor_right = 0.5
+anchor_bottom = 0.727
+margin_left = -201.822
+margin_top = -216.932
+margin_right = 210.178
+margin_bottom = -177.932
+custom_fonts/normal_font = SubResource( 14 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "Now onto the Second Level"
+text = "Now onto the Second Level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tween_completed" from="Control/Popup/Tween" to="Control/Popup" method="_on_Tween_tween_completed"]

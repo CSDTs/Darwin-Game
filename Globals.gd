@@ -4,7 +4,7 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var canMove = true;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,5 +13,6 @@ func _ready():
 func load_new_scene(new_scene_path):
 	get_tree().change_scene(new_scene_path)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func updateMove(status):
+	canMove = status;

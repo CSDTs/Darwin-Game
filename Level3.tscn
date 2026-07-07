@@ -1,10 +1,289 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://Assets/Backgrounds/beagle.png" type="Texture" id=1]
+[ext_resource path="res://Item/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Level3.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Backgrounds/beagle(5).png" type="Texture" id=4]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Backgrounds/beagle.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/CameraFollow.gd" type="Script" id=7]
+[ext_resource path="res://Player/Lawyer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Backgrounds/wedgwood_house_map_floor.png" type="Texture" id=17]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 134, 28, 82, 28, 82, 1, 134, 1 )
 
-[node name="beagle" type="Sprite" parent="."]
-position = Vector2( 520.338, 308.173 )
-scale = Vector2( 0.910619, 1.4624 )
-texture = ExtResource( 1 )
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 385, 29, 333, 29, 333, 1, 385, 1 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 384, 205, 335, 205, 335, 180, 384, 180 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 134, 207, 82, 207, 82, 180, 134, 180 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 0, 0, 7, 0, 5, 206, 0, 207 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 461, 0, 467, 1, 467, 206, 462, 207 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 490, 3, -4, 3, -4, -56, 490, -56 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( -4, 203, 475, 203, 475, 249, -4, 249 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( 3, 3, 1067, 5, 1068, 161, 993, 160, 968, 124, 929, 97, 890, 75, 862, 63, 864, 108, 855, 106, 855, 61, 807, 49, 767, 42, 712, 38, 642, 38, 590, 38, 490, 42, 427, 44, 411, 45, 412, 106, 406, 108, 406, 45, 362, 52, 285, 59, 237, 65, 200, 72, 189, 70, 189, 108, 182, 107, 182, 72, 91, 93, 44, 105, 44, 223, 6, 319 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( 1069, 163, 1069, 322, 6, 321, 45, 226, 167, 250, 182, 252, 183, 220, 190, 219, 191, 251, 248, 260, 312, 268, 404, 277, 406, 220, 412, 219, 412, 278, 463, 281, 556, 287, 682, 290, 747, 292, 855, 267, 856, 220, 862, 219, 864, 262, 890, 250, 950, 212, 992, 161 )
+
+[sub_resource type="TileSet" id=11]
+0/name = "wedgwood_house_map_floor.png 0"
+0/texture = ExtResource( 17 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 7, 78, 467, 207 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "beagle.png 1"
+1/texture = ExtResource( 6 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( -1, -3, 1069, 324 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 9 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 9 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 10 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 33.8315, 82.4475 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 66.546, 28.5005 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 43.6597, 22.1799 )
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 85.4644, 22.1799 )
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 41.8032, 35.3751 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 31.5904, 34.4935 )
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 35.8854, 44.4189 )
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 6.99487, 165.273 )
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 6.99487, 42.9002 )
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 22.2481, 18.4332 )
+
+[node name="Level3" type="Node2D"]
+position = Vector2( 213.809, 342.323 )
+script = ExtResource( 3 )
+
+[node name="BackgroundSprite" type="Sprite" parent="."]
+position = Vector2( 698.833, 123.379 )
+scale = Vector2( 1.65656, 1.65656 )
+texture = ExtResource( 4 )
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+scale = Vector2( 1.5, 1.5 )
+tile_set = SubResource( 11 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+
+[node name="Lawyer" parent="." instance=ExtResource( 8 )]
+position = Vector2( 167.755, 99.1784 )
+
+[node name="Captain" parent="." instance=ExtResource( 5 )]
+position = Vector2( 12.2302, 105.426 )
+rotation = 3.09857
+scale = Vector2( 0.1, 0.1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+current = true
+zoom = Vector2( 1.2, 1.2 )
+script = ExtResource( 7 )
+
+[node name="Page1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 673.44, 188.198 )
+
+[node name="Page2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 521.552, 104.59 )
+
+[node name="Page3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 341.796, 185.411 )
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 1418.87, 218.944 )
+rotation = 1.57248
+shape = SubResource( 12 )
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 1044.79, 324.996 )
+rotation = 1.57248
+shape = SubResource( 14 )
+
+[node name="CollisionShape2D30" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 316.743, 328.01 )
+rotation = 1.57248
+shape = SubResource( 14 )
+
+[node name="CollisionShape2D31" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 312.221, -146.802 )
+rotation = 1.57248
+shape = SubResource( 14 )
+
+[node name="CollisionShape2D32" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 1038.76, -146.802 )
+rotation = 1.57248
+shape = SubResource( 14 )
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 1383.62, 168.549 )
+rotation = 3.1555
+shape = SubResource( 15 )
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 1574.63, 94.4349 )
+rotation = 3.1555
+shape = SubResource( 26 )
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 593.191, 94.3723 )
+rotation = 6.27045
+shape = SubResource( 19 )
+
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 1281.49, -90.892 )
+rotation = 8.11112
+shape = SubResource( 22 )
+
+[node name="CollisionShape2D29" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 1422.13, -22.4192 )
+rotation = 8.11112
+shape = SubResource( 22 )
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( -130.866, -81.0571 )
+rotation = 6.27692
+shape = SubResource( 24 )
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 103.158, 91.6203 )
+rotation = 6.27692
+shape = SubResource( 27 )
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 150.871, -67.4247 )
+rotation = 4.70404
+shape = SubResource( 28 )
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 146.327, 250.665 )
+rotation = 4.70404
+shape = SubResource( 28 )
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( -94.534, 282.038 )
+rotation = 6.27692
+shape = SubResource( 25 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/StaticBody2D"]
+visible = false
+build_mode = 1
+polygon = PoolVector2Array( 530.618, 383.043, 910.054, 380.771, 1107.72, 378.499, 1246.32, 358.05, 1375.83, 328.513, 1473.53, 287.616, 1566.68, 221.726, 1657.57, 146.747, 1657.57, 33.1436, 1575.77, -23.6582, 1503.06, -80.46, 1421.27, -128.173, 1316.75, -159.982, 1182.7, -180.431, 1041.83, -200.88, 887.333, -207.696, 660.126, -209.968, 476.088, -209.968, 307.955, -200.88, 114.829, -187.247, -96.4739, -166.799, -178.268, -153.166, -212.35, -100.909, -230.526, 44.504, -228.254, 158.108, -216.894, 269.439, -191.901, 326.241, -46.4883, 360.322, 144.366, 371.682, 312.499, 383.043 )

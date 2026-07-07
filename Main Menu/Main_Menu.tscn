@@ -1,24 +1,208 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Main Menu/Main_Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/Titillium-Regular.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://Main Menu/Title_Screen.png" type="Texture" id=3]
-[ext_resource path="res://Main Menu/troll.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Backgrounds/Home_Screen.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Menu/troll.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Menu/instruction-screen.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Fonts/Raleway-Bold.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.199219, 0.199219, 0.199219, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.0535583, 0.064363, 0.152344, 1 )
+bg_color = Color( 0.105882, 0.117647, 0.180392, 0.85 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.345098, 0.6, 0.945098, 0.6 )
 border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color( 0, 0, 0, 0.3 )
+shadow_size = 8
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0.066667, 0.078431, 0.121569, 0, 0.066667, 0.078431, 0.121569, 0.85 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 4
+
+[sub_resource type="DynamicFont" id=4]
+size = 58
+outline_size = 2
+outline_color = Color( 0.066667, 0.078431, 0.121569, 0.5 )
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 0.32549, 0.352941, 0.466667, 0.95 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 0.156863, 0.172549, 0.25098, 0.95 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 0.219608, 0.243137, 0.34902, 0.95 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 1, 0.694118, 0.294118, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id=10]
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.764706, 0.443137, 0.090196, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.945098, 0.580392, 0.156863, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="DynamicFont" id=12]
+size = 28
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=13]
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.764706, 0.32549, 0.32549, 0.9 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.6, 0.227451, 0.227451, 1 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.066667, 0.078431, 0.121569, 0.55 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="DynamicFont" id=17]
+size = 20
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=18]
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.886275, 0.815686, 0.658824, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.541176, 0.388235, 0.227451, 1 )
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.976471, 0.92549, 0.803922, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.886275, 0.694118, 0.235294, 1 )
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color( 0, 0, 0, 0.3 )
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.94902, 0.886275, 0.745098, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.541176, 0.388235, 0.227451, 1 )
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color( 0, 0, 0, 0.25 )
+shadow_size = 6
+
+[sub_resource type="DynamicFontData" id=22]
+font_path = "res://Assets/Fonts/Raleway-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=23]
+size = 22
+use_filter = true
+font_data = SubResource( 22 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 34
+font_data = SubResource( 22 )
+
+[sub_resource type="DynamicFont" id=25]
+font_data = SubResource( 22 )
+
+[sub_resource type="DynamicFont" id=26]
+
+[sub_resource type="DynamicFont" id=27]
+
+[sub_resource type="DynamicFont" id=28]
 size = 32
 use_filter = true
 font_data = ExtResource( 2 )
@@ -30,112 +214,414 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-court1 = "res://Courtroom1.tscn"
+court1 = "res://Courtroom.tscn"
 level1 = "res://Level1.tscn"
+level2 = "res://Level2.tscn"
+level3 = "res://Level3.tscn"
 
 [node name="Start_Menu" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.901961 )
-margin_right = 1024.0
-margin_bottom = 597.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title_Label" type="Label" parent="Start_Menu"]
-margin_left = 20.0
-margin_top = 10.0
-margin_right = 185.0
-margin_bottom = 62.0
-rect_scale = Vector2( 1.4, 1.4 )
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 3
-custom_constants/shadow_offset_y = 3
-text = "Charles Darwin!"
-align = 1
-valign = 1
-uppercase = true
+[node name="Title_Screen" type="Sprite" parent="Start_Menu"]
+position = Vector2( 1.4362, 2.95467 )
+scale = Vector2( 0.779537, 0.779537 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Button_Bar" type="TextureRect" parent="Start_Menu"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -90.0
+texture = SubResource( 3 )
+expand = true
+stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title_Screen" type="Sprite" parent="Start_Menu"]
-position = Vector2( 510.624, 299.385 )
-scale = Vector2( 0.950837, 0.825198 )
-texture = ExtResource( 3 )
+[node name="Title_Label" type="Label" parent="Start_Menu"]
+margin_left = 250.0
+margin_top = 10.0
+margin_right = 1030.0
+margin_bottom = 180.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0.92549, 0.815686, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.35 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+text = "Charles Darwin's
+Excellent Adventure"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Button_Open_Godot" type="Button" parent="Start_Menu"]
-margin_left = 445.902
-margin_top = 467.0
-margin_right = 577.902
-margin_bottom = 519.0
-text = "Open Godot"
+[node name="Button_CSDT" type="Button" parent="Start_Menu"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 807.0
+margin_top = -70.0
+margin_right = 1007.0
+margin_bottom = -22.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "Open CSDT website"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Start" type="Button" parent="Start_Menu"]
-margin_left = 349.264
-margin_top = 393.861
-margin_right = 670.264
-margin_bottom = 459.861
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 560.0
+margin_top = -74.0
+margin_right = 720.0
+margin_bottom = -14.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.105882, 0.117647, 0.180392, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button_LevelSelect" type="Button" parent="Start_Menu"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 270.0
+margin_top = -70.0
+margin_right = 450.0
+margin_bottom = -22.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "Select Level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button_Quit" type="Button" parent="Start_Menu"]
-margin_left = 450.502
-margin_top = 530.007
-margin_right = 577.502
-margin_bottom = 584.007
-text = "Quit"
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -54.0
+margin_top = 14.0
+margin_right = -14.0
+margin_bottom = 54.0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Panel" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.901961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="Sprite" parent="Instructions"]
+position = Vector2( -1.51856, 0 )
+scale = Vector2( 0.426525, 0.426525 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Button_Continue" type="Button" parent="Instructions"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 556.966
+margin_top = -87.0
+margin_right = 731.966
+margin_bottom = -37.0
+text = "Press Space to Continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Level_Select_Menu" type="Panel" parent="."]
 visible = false
-modulate = Color( 1, 1, 1, 0.901961 )
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title_Label" type="Label" parent="Level_Select_Menu"]
-margin_left = 20.0
-margin_top = 10.0
-margin_right = 227.0
-margin_bottom = 77.0
-rect_scale = Vector2( 1.4, 1.4 )
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 3
-custom_constants/shadow_offset_y = 3
-text = "Select a level"
+margin_top = 18.0
+margin_right = 1280.0
+margin_bottom = 95.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0.92549, 0.815686, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.35 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+text = "Choose Your Expedition"
 align = 1
 valign = 1
 
+[node name="Subtitle_Label" type="Label" parent="Level_Select_Menu"]
+margin_top = 71.3795
+margin_right = 1280.0
+margin_bottom = 137.379
+custom_fonts/font = SubResource( 18 )
+custom_colors/font_color = Color( 0.823529, 0.764706, 0.654902, 1 )
+text = "
+Uncover the influences and experiences that shaped Darwin’s opposition to slavery
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button_Back" type="Button" parent="Level_Select_Menu"]
-margin_left = 18.8988
-margin_top = 537.986
-margin_right = 165.899
-margin_bottom = 582.986
-text = "Back"
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 106.0
+margin_bottom = 52.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 17 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "< Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Level1" type="Button" parent="Level_Select_Menu"]
-margin_left = 49.1857
-margin_top = 168.656
-margin_right = 285.186
-margin_bottom = 324.656
+margin_left = 95.0
+margin_top = 185.0
+margin_right = 395.0
+margin_bottom = 665.0
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/focus = SubResource( 19 )
+custom_styles/normal = SubResource( 21 )
+custom_fonts/font = SubResource( 23 )
+custom_colors/font_color = Color( 0.301961, 0.219608, 0.117647, 1 )
+custom_colors/font_color_hover = Color( 0.301961, 0.219608, 0.117647, 1 )
+custom_colors/font_color_pressed = Color( 0.301961, 0.219608, 0.117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="Level_Select_Menu/Button_Level1"]
+margin_left = 75.0
+margin_top = 50.0
+margin_right = 225.0
+margin_bottom = 200.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="LevelNumber" type="Label" parent="Level_Select_Menu/Button_Level1"]
+margin_top = 220.0
+margin_right = 300.0
+margin_bottom = 270.0
+custom_fonts/font = SubResource( 24 )
+custom_colors/font_color = Color( 0.301961, 0.219608, 0.117647, 1 )
 text = "Level 1"
-icon = ExtResource( 4 )
+align = 1
+valign = 1
+
+[node name="Subtitle" type="Label" parent="Level_Select_Menu/Button_Level1"]
+margin_left = 15.0
+margin_top = 280.0
+margin_right = 285.0
+margin_bottom = 350.0
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 0.388235, 0.298039, 0.184314, 1 )
+text = "College Conversations"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Status" type="Label" parent="Level_Select_Menu/Button_Level1"]
+margin_top = 415.0
+margin_right = 300.0
+margin_bottom = 460.0
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 0.184314, 0.490196, 0.184314, 1 )
+text = "Play Level"
+align = 1
+valign = 1
+
+[node name="Button_Level2" type="Button" parent="Level_Select_Menu"]
+margin_left = 490.0
+margin_top = 185.0
+margin_right = 790.0
+margin_bottom = 665.0
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/focus = SubResource( 19 )
+custom_styles/normal = SubResource( 21 )
+custom_fonts/font = SubResource( 26 )
+custom_colors/font_color = Color( 0.301961, 0.219608, 0.117647, 1 )
+custom_colors/font_color_hover = Color( 0.301961, 0.219608, 0.117647, 1 )
+custom_colors/font_color_pressed = Color( 0.301961, 0.219608, 0.117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="Level_Select_Menu/Button_Level2"]
+margin_left = 75.0
+margin_top = 50.0
+margin_right = 225.0
+margin_bottom = 200.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelNumber" type="Label" parent="Level_Select_Menu/Button_Level2"]
+margin_top = 220.0
+margin_right = 300.0
+margin_bottom = 270.0
+custom_fonts/font = SubResource( 24 )
+custom_colors/font_color = Color( 0.301961, 0.219608, 0.117647, 1 )
+text = "Level 2"
+align = 1
+valign = 1
+
+[node name="Subtitle" type="Label" parent="Level_Select_Menu/Button_Level2"]
+margin_left = 15.0
+margin_top = 280.0
+margin_right = 285.0
+margin_bottom = 350.0
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 0.388235, 0.298039, 0.184314, 1 )
+text = "Uncle Josiah’s Influence"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Status" type="Label" parent="Level_Select_Menu/Button_Level2"]
+margin_top = 415.0
+margin_right = 300.0
+margin_bottom = 460.0
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 0.184314, 0.490196, 0.184314, 1 )
+text = "Play Level"
+align = 1
+valign = 1
+
+[node name="Button_Level3" type="Button" parent="Level_Select_Menu"]
+margin_left = 885.0
+margin_top = 185.0
+margin_right = 1185.0
+margin_bottom = 665.0
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/focus = SubResource( 19 )
+custom_styles/normal = SubResource( 21 )
+custom_fonts/font = SubResource( 27 )
+custom_colors/font_color = Color( 0.301961, 0.219608, 0.117647, 1 )
+custom_colors/font_color_hover = Color( 0.301961, 0.219608, 0.117647, 1 )
+custom_colors/font_color_pressed = Color( 0.301961, 0.219608, 0.117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="Level_Select_Menu/Button_Level3"]
+margin_left = 75.0
+margin_top = 50.0
+margin_right = 225.0
+margin_bottom = 200.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelNumber" type="Label" parent="Level_Select_Menu/Button_Level3"]
+margin_top = 220.0
+margin_right = 300.0
+margin_bottom = 270.0
+custom_fonts/font = SubResource( 24 )
+custom_colors/font_color = Color( 0.301961, 0.219608, 0.117647, 1 )
+text = "Level 3"
+align = 1
+valign = 1
+
+[node name="Subtitle" type="Label" parent="Level_Select_Menu/Button_Level3"]
+margin_left = 15.0
+margin_top = 280.0
+margin_right = 285.0
+margin_bottom = 350.0
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 0.388235, 0.298039, 0.184314, 1 )
+text = "Aboard the Beagle"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Status" type="Label" parent="Level_Select_Menu/Button_Level3"]
+margin_top = 415.0
+margin_right = 300.0
+margin_bottom = 460.0
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 0.184314, 0.490196, 0.184314, 1 )
+text = "Play Level"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -153,7 +639,7 @@ margin_top = 10.0
 margin_right = 227.0
 margin_bottom = 53.0
 rect_scale = Vector2( 1.4, 1.4 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 28 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 3
 custom_constants/shadow_offset_y = 3
@@ -165,7 +651,7 @@ valign = 1
 margin_top = 120.0
 margin_right = 330.0
 margin_bottom = 152.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 28 )
 text = "Mouse sensitivity"
 align = 1
 valign = 1
@@ -184,7 +670,7 @@ value = 0.012
 margin_top = 190.0
 margin_right = 330.0
 margin_bottom = 222.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 28 )
 text = "Joypad sensitivity"
 align = 1
 valign = 1
@@ -208,7 +694,7 @@ margin_left = -135.0
 margin_top = -450.0
 margin_right = 135.0
 margin_bottom = -410.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 28 )
 pressed = true
 text = "V-Sync"
 
@@ -221,7 +707,14 @@ margin_left = -135.0
 margin_top = -400.0
 margin_right = 135.0
 margin_bottom = -350.0
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 23 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "Fullscreen"
 
 [node name="Check_Button_Debug" type="CheckButton" parent="Options_Menu"]
@@ -233,7 +726,7 @@ margin_left = -155.0
 margin_top = -150.0
 margin_right = 155.0
 margin_bottom = -110.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 28 )
 text = "Debug display"
 
 [node name="Button_Back" type="Button" parent="Options_Menu"]
@@ -245,5 +738,12 @@ margin_left = -155.0
 margin_top = -70.0
 margin_right = 155.0
 margin_bottom = -20.0
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 23 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "Back"

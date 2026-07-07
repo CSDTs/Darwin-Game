@@ -1,48 +1,307 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Backgrounds/hallway_background-04.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Icons and things/glow/glow.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Icons and things/glow/glow.gd" type="Script" id=4]
+[ext_resource path="res://Player/Lawyer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Item/Item.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Level1.gd" type="Script" id=8]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/CameraFollow.gd" type="Script" id=17]
+[ext_resource path="res://Assets/Backgrounds/level1-larger.png" type="Texture" id=24]
+[ext_resource path="res://CaseFile/CaseFile.tscn" type="PackedScene" id=25]
+[ext_resource path="res://EvidenceSelect.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Assets/Backgrounds/level1_grass_tile.png" type="Texture" id=27]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 42.2601, 10 )
+[sub_resource type="TileSet" id=1]
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.6, 0.6, 0.521569, 1 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 814.508, 4.04913 )
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 758.369, 10 )
 
-[node name="hallway_background-04" type="Sprite" parent="."]
-position = Vector2( 513.782, 324.606 )
-scale = Vector2( 1.06264, 1 )
-texture = ExtResource( 2 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 188.187, 5.67123 )
 
-[node name="Area2D" type="Area2D" parent="hallway_background-04"]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 206.659, 4.12848 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hallway_background-04/Area2D"]
-position = Vector2( -192.828, 72.1628 )
-shape = SubResource( 1 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 62.3165, 5.00012 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 81.0724, 318.051 )
-rotation = -1.5708
-scale = Vector2( 0.14, 0.14 )
+[node name="Level1" type="Node2D"]
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 169.2 ]
+}
 
-[node name="glow" parent="." instance=ExtResource( 3 )]
-position = Vector2( 242.325, 315.378 )
-scale = Vector2( 0.2, 0.2 )
-script = ExtResource( 4 )
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 1, 0.980392, 0.92549, 1 )
 
-[node name="Items" type="Panel" parent="glow"]
+[node name="GrassBackground" type="Polygon2D" parent="."]
+z_index = -10
+texture = ExtResource( 27 )
+texture_scale = Vector2( 0.841369, 0.841369 )
+polygon = PoolVector2Array( -19658, -19550, 20342, -19550, 20342, 20450, -19658, 20450 )
+uv = PoolVector2Array( -19658, -19550, 20342, -19550, 20342, 20450, -19658, 20450 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 342.387, 450.149 )
+scale = Vector2( 1.18854, 1.18854 )
+texture = ExtResource( 24 )
+
+[node name="TileMap" type="TileMap" parent="Sprite"]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 24, 24 )
+format = 1
+
+[node name="Lawyer" parent="." instance=ExtResource( 1 )]
+position = Vector2( 202.192, 342.39 )
+
+[node name="Monro" parent="." instance=ExtResource( 2 )]
+position = Vector2( 386.781, 49.8123 )
+scale = Vector2( 0.1, 0.1 )
+
+[node name="Jameson" parent="." instance=ExtResource( 2 )]
+position = Vector2( 577.699, 791.475 )
+scale = Vector2( 0.1, 0.1 )
+
+[node name="Edmonstone" parent="." instance=ExtResource( 2 )]
+position = Vector2( -89.4639, 797.035 )
+scale = Vector2( 0.1, 0.1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 17 )
+
+[node name="Bone" parent="." instance=ExtResource( 4 )]
+position = Vector2( 187.337, 149.915 )
+
+[node name="Rocks" parent="." instance=ExtResource( 4 )]
+position = Vector2( 509.572, 521.279 )
+
+[node name="Portrait" parent="." instance=ExtResource( 4 )]
+position = Vector2( 153.718, 494.873 )
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 12 )]
+
+[node name="Barriers" type="Node2D" parent="."]
 visible = false
-margin_left = -537.0
-margin_top = -1235.0
-margin_right = 3237.0
-margin_bottom = 943.0
-custom_styles/panel = SubResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Barriers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 383.026, -0.912789 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 1480.65, 309.019 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 1203.42, 445.318 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 365.886, 864.186 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( -263.543, 130.071 )
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 1140.98, 206.922 )
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 448.448, 309.309 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( -174.604, 307.15 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( -98.7097, 448.916 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 169.166, 106.185 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 171.736, 657.556 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 319.297, 652.796 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 725.486, 655.969 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 550.698, 97.7893 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 625.344, 100.122 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 1025.4, 102.455 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 105.263, 309.474 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 239.394, 448.27 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="Barriers/StaticBody2D"]
+position = Vector2( 441.744, 377.02 )
+rotation = -1.55632
+shape = SubResource( 6 )
+
+[node name="JamesonMenu" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="QuestionMenu" type="Panel" parent="JamesonMenu"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -360.0
+margin_top = -130.0
+margin_right = 360.0
+margin_bottom = 130.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="hit" from="Player" to="glow" method="_on_Player_hit"]
-[connection signal="body_entered" from="glow" to="Player" method="_on_glow_body_entered"]
+
+[node name="Prompt" type="Label" parent="JamesonMenu/QuestionMenu"]
+margin_left = 20.0
+margin_top = 18.0
+margin_right = 700.0
+margin_bottom = 50.0
+text = "Ask Professor Jameson a question:"
+align = 1
+valign = 1
+
+[node name="Button_Q1" type="Button" parent="JamesonMenu/QuestionMenu"]
+margin_left = 30.0
+margin_top = 70.0
+margin_right = 690.0
+margin_bottom = 124.0
+text = "How does geology connect to biology?"
+
+[node name="Button_Q2" type="Button" parent="JamesonMenu/QuestionMenu"]
+margin_left = 30.0
+margin_top = 144.0
+margin_right = 690.0
+margin_bottom = 198.0
+text = "What evidence can we find from fossils?"
+
+[node name="MonroMenu" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="QuestionMenu" type="Panel" parent="MonroMenu"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -360.0
+margin_top = -130.0
+margin_right = 360.0
+margin_bottom = 130.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prompt" type="Label" parent="MonroMenu/QuestionMenu"]
+margin_left = 20.0
+margin_top = 18.0
+margin_right = 700.0
+margin_bottom = 50.0
+text = "Ask Professor Monro a question:"
+align = 1
+valign = 1
+
+[node name="Button_Q1" type="Button" parent="MonroMenu/QuestionMenu"]
+margin_left = 30.0
+margin_top = 70.0
+margin_right = 690.0
+margin_bottom = 124.0
+text = "Was Darwin studying medicine?"
+
+[node name="Button_Q2" type="Button" parent="MonroMenu/QuestionMenu"]
+margin_left = 30.0
+margin_top = 144.0
+margin_right = 690.0
+margin_bottom = 198.0
+text = "How could anatomy help Darwin?"
+
+[node name="EdmonstoneMenu" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="QuestionMenu" type="Panel" parent="EdmonstoneMenu"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -360.0
+margin_top = -170.0
+margin_right = 360.0
+margin_bottom = 170.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prompt" type="Label" parent="EdmonstoneMenu/QuestionMenu"]
+margin_left = 20.0
+margin_top = 18.0
+margin_right = 700.0
+margin_bottom = 50.0
+text = "Ask Professor Edmonstone a question:"
+align = 1
+valign = 1
+
+[node name="Button_Q1" type="Button" parent="EdmonstoneMenu/QuestionMenu"]
+margin_left = 30.0
+margin_top = 70.0
+margin_right = 690.0
+margin_bottom = 124.0
+text = "What did you teach Darwin?"
+
+[node name="Button_Q2" type="Button" parent="EdmonstoneMenu/QuestionMenu"]
+margin_left = 30.0
+margin_top = 144.0
+margin_right = 690.0
+margin_bottom = 198.0
+text = "Did Darwin come from an abolitionist family?"
+
+[node name="Button_Q3" type="Button" parent="EdmonstoneMenu/QuestionMenu"]
+margin_left = 30.0
+margin_top = 218.0
+margin_right = 690.0
+margin_bottom = 272.0
+text = "Did Darwin ever speak about slavery or abolition with you?"
+
+[node name="CaseFile" parent="." instance=ExtResource( 25 )]
+
+[node name="EvidenceSelect" parent="." instance=ExtResource( 26 )]
