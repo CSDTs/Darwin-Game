@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Item/Item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Assets/Environment/desk-chair.png" type="Texture" id=28]
 [ext_resource path="res://Assets/Environment/piano.png" type="Texture" id=29]
 [ext_resource path="res://Assets/Environment/chair-b.png" type="Texture" id=30]
+[ext_resource path="res://CaseFile/CaseFile.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Assets/Backgrounds/level1_grass_tile.png" type="Texture" id=32]
 
 [sub_resource type="TileSet" id=1]
 0/name = "wedgwood_house_map_floor.png 0"
@@ -253,6 +255,13 @@ extents = Vector2( 45.0211, 10 )
 [node name="Level2" type="Node2D"]
 script = ExtResource( 6 )
 
+[node name="GrassBackground" type="Polygon2D" parent="."]
+z_index = -10
+texture = ExtResource( 32 )
+texture_scale = Vector2( 0.841369, 0.841369 )
+polygon = PoolVector2Array( -19588, -19990, 20412, -19990, 20412, 20010, -19588, 20010 )
+uv = PoolVector2Array( -19588, -19990, 20412, -19990, 20412, 20010, -19588, 20010 )
+
 [node name="Background" type="Sprite" parent="."]
 visible = false
 position = Vector2( 438.259, 180.727 )
@@ -295,6 +304,8 @@ position = Vector2( 217.347, 266.342 )
 position = Vector2( 86.3923, 186.565 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
+
+[node name="CaseFile" parent="." instance=ExtResource( 31 )]
 
 [node name="Node2D" type="Node2D" parent="."]
 visible = false

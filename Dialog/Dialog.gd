@@ -812,7 +812,9 @@ func load_dialog():
 			get_node("/root/Level2/Plate").queue_free()
 		elif main == successMedallion:
 			get_node("/root/Level2/CanvasLayer/Courtroom").visible = false
-			get_node("/root/Level2/Medallion").queue_free()
+			var med2 = get_node_or_null("/root/Level2/Medallion")
+			if med2 != null:
+				med2.queue_free()
 			get_node("/root/Level2/CanvasLayer/NextLevel").visible = true
 		elif main == captain:
 			get_node("/root/Level3/Page1").visible = true

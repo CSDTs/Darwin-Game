@@ -61,8 +61,8 @@ func _process(delta):
 		#Else, controls the proper level's additional canvas elements (like courtrooms and dialogs)
 		elif Input.is_action_just_pressed('pickup'):
 			var scene = get_tree().get_current_scene()
-			if scene.get_name() == "Level1":
-				#Level 1: collect the artifact and stay until all three are gathered
+			if scene.get_name() == "Level1" or scene.get_name() == "Level2":
+				#Level 1 & 2: collect the artifact into the Case File; stay in the level until all required artifacts are gathered
 				setItemControlLayer(false)
 				scene.collect_artifact(self)
 			else:
