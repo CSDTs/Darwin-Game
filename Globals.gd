@@ -6,6 +6,11 @@ extends Node
 # var b = "text"
 var canMove = true;
 
+# The NPC whose talk area the player is currently inside (or null). Set by NPCArea
+# and read by the player's try_interact(), so talking uses the same range as the
+# visible "Press Space to talk" prompt instead of a facing-direction raycast.
+var current_npc = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

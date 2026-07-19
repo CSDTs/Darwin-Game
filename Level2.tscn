@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://Item/Item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://Assets/Environment/chair-b.png" type="Texture" id=30]
 [ext_resource path="res://CaseFile/CaseFile.tscn" type="PackedScene" id=31]
 [ext_resource path="res://Assets/Backgrounds/level1_grass_tile.png" type="Texture" id=32]
+[ext_resource path="res://EvidenceCard.tscn" type="PackedScene" id=33]
+[ext_resource path="res://EvidenceSelect.tscn" type="PackedScene" id=34]
 
 [sub_resource type="TileSet" id=1]
 0/name = "wedgwood_house_map_floor.png 0"
@@ -256,6 +258,7 @@ extents = Vector2( 45.0211, 10 )
 script = ExtResource( 6 )
 
 [node name="GrassBackground" type="Polygon2D" parent="."]
+position = Vector2( 0, -2.05054 )
 z_index = -10
 texture = ExtResource( 32 )
 texture_scale = Vector2( 0.841369, 0.841369 )
@@ -269,7 +272,7 @@ scale = Vector2( 1.914, 1.909 )
 texture = ExtResource( 26 )
 
 [node name="BackgroundSprite" type="Sprite" parent="."]
-position = Vector2( 411.824, 9.87934 )
+position = Vector2( 411.824, 8.87934 )
 scale = Vector2( 1.29234, 1.29234 )
 texture = ExtResource( 26 )
 
@@ -295,17 +298,24 @@ zoom = Vector2( 1.2, 1.2 )
 script = ExtResource( 3 )
 
 [node name="Plate" parent="." instance=ExtResource( 1 )]
-position = Vector2( 325.724, 121.84 )
+position = Vector2( 910.535, 35.6086 )
 
 [node name="Teapot" parent="." instance=ExtResource( 1 )]
-position = Vector2( 217.347, 266.342 )
+position = Vector2( 934.893, -495.493 )
+
+[node name="SermonNotes" parent="." instance=ExtResource( 1 )]
+position = Vector2( -139.896, -307.896 )
 
 [node name="Medallion" parent="." instance=ExtResource( 1 )]
-position = Vector2( 86.3923, 186.565 )
+position = Vector2( 457.731, -509.395 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
 
 [node name="CaseFile" parent="." instance=ExtResource( 31 )]
+
+[node name="EvidenceCard" parent="." instance=ExtResource( 33 )]
+
+[node name="EvidenceSelect" parent="." instance=ExtResource( 34 )]
 
 [node name="Node2D" type="Node2D" parent="."]
 visible = false

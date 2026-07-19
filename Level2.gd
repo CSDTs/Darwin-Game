@@ -5,17 +5,48 @@ extends Node2D
 # and only then may press F to return to the courtroom.
 
 # Tracks which of Level 2's three artifacts have been collected.
-var collected = {"Plate": false, "Teapot": false, "Medallion": false}
+var collected = {"Plate": false, "Teapot": false, "SermonNotes": false, "Medallion": false}
 
 # Display names shown in the Case File for each artifact node.
-var display_names = {"Plate": "Wedgwood Plate", "Teapot": "Wedgwood Teapot", "Medallion": "Anti-Slavery Medallion"}
+var display_names = {"Plate": "Regular Plate", "Teapot": "Teapot", "SermonNotes": "\"One Blood\" Sermon Notes", "Medallion": "Anti-Slavery Medallion"}
+
+# Evidence-card copy per artifact: what the object is and why it might matter for
+# Darwin's defense. Placeholder drafts, easy to refine later.
+var card_content = {
+	"Plate": {
+		"shows": "An ordinary household plate from Uncle Josiah's home.",
+		"why": "It gives household context, but it does not directly prove abolitionist influence."
+	},
+	"Teapot": {
+		"shows": "A teapot from the Wedgwood household.",
+		"why": "It shows the domestic world Darwin entered, but by itself it is weak evidence."
+	},
+	"SermonNotes": {
+		"shows": "Notes referencing the belief that all nations were made 'of one blood.'",
+		"why": "This points to the idea that all humans belong to one family, not separate unequal races."
+	},
+	"Medallion": {
+		"shows": "A medallion asking, 'Am I not a man and a brother?'",
+		"why": "Josiah Wedgwood helped spread this abolitionist symbol, directly connecting Darwin's family to anti-slavery activism."
+	}
+}
 
 onready var globals = get_node("/root/Globals")
 onready var courtroom_prompt = get_node_or_null("/root/Level2/CanvasLayer/Control/CourtroomPrompt")
+onready var evidence_card = get_node_or_null("/root/Level2/EvidenceCard")
+
+# The artifact whose evidence card is currently open, held until the player
+# presses Continue (then it is collected and the strength selection opens).
+var _pending_item = null
+var _pending_texture = null
 
 # True once all Level 2 evidence is collected: the player may now press F to
 # return to the courtroom.
 var ready_for_courtroom = false
+
+# True once the player has finished the opening Uncle Josiah conversation. The
+# objective only shows the "search the house" progress once this is set.
+var uncle_spoken = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,15 +55,14 @@ func _ready():
 
 	back.connect("pressed", self, "_Button_pressed")
 
-	# Level 2 shares the UI scene (whose baked text is the Level 1 objective), so
-	# set the Level 2-specific objective here.
-	var objective_panel = get_node("/root/Level2/CanvasLayer/Control/Objective")
-	var objective = objective_panel.get_node("Label")
-	objective.bbcode_text = "[center]Objective: Speak with Uncle Josiah and search the house for evidence of Darwin's abolitionist influences.[/center]"
-	# This objective is longer than Level 1's and wraps to two lines, so grow the
-	# bar and disable scrolling so the whole objective is readable without scrolling.
+	# The objective is progress-based: stage 1 asks the player to speak with Uncle
+	# Josiah, then it becomes a "search the house" objective with an X/4 artifact
+	# counter, and finally the return-to-court objective. _update_objective (called
+	# here, after the Uncle conversation, and after each collected artifact) writes
+	# the current text. scroll_active is disabled so the text never needs scrolling.
+	var objective = get_node("/root/Level2/CanvasLayer/Control/Objective/Label")
 	objective.scroll_active = false
-	objective_panel.margin_bottom = 74.0
+	_update_objective()
 
 	# Level 2 now has its own Case File, so show the "Press C" hint here too. This
 	# runs after the shared UI script's _ready (children ready before parent), so
@@ -52,6 +82,10 @@ func _ready():
 	var case_file = get_node_or_null("/root/Level2/CaseFile")
 	if case_file != null:
 		case_file.connect("evidence_labeled", self, "_on_evidence_labeled")
+
+	# The evidence card's Continue button hands off to strength selection.
+	if evidence_card != null:
+		evidence_card.connect("continued", self, "_on_card_continued")
 
 
 #back button to main menu screen
@@ -80,6 +114,58 @@ func collect_artifact(item):
 	else:
 		_after_label()
 
+# Level 2: interacting with an artifact opens the parchment evidence card first.
+# The artifact is NOT collected yet — that happens when the player presses
+# Continue (see _on_card_continued), which then opens strength selection.
+func show_evidence_card(item):
+	if _pending_item != null:
+		return
+	if evidence_card == null:
+		# No card available: fall back to collecting directly.
+		collect_artifact(item)
+		return
+	_pending_item = item
+	var art_name = item.name
+	# Prefer the shrunk in-world object image; fall back to the card preview sprite.
+	var tex = null
+	var world_sprite = item.get_node_or_null("WorldSprite")
+	if world_sprite != null and world_sprite.texture != null:
+		tex = world_sprite.texture
+	else:
+		var preview = item.get_node_or_null("CanvasLayer/Control/" + art_name)
+		if preview != null:
+			tex = preview.texture
+	_pending_texture = tex
+	var shown_name = display_names[art_name] if display_names.has(art_name) else art_name
+	var shows_text = ""
+	var why_text = ""
+	if card_content.has(art_name):
+		shows_text = card_content[art_name]["shows"]
+		why_text = card_content[art_name]["why"]
+	evidence_card.show_card(shown_name, tex, shows_text, why_text)
+
+# Continue pressed on the evidence card: collect the pending artifact into the
+# Case File and open the Weak/Medium/Strong selection.
+func _on_card_continued():
+	var item = _pending_item
+	_pending_item = null
+	if item == null:
+		return
+	var art_name = item.name
+	if collected.has(art_name):
+		collected[art_name] = true
+	item.queue_free()
+	var case_file = get_node_or_null("/root/Level2/CaseFile")
+	if case_file != null:
+		var shown_name = display_names[art_name] if display_names.has(art_name) else art_name
+		var desc = ""
+		if card_content.has(art_name):
+			desc = card_content[art_name]["shows"]
+		case_file.open_label_mode(shown_name, _pending_texture, art_name, desc)
+	else:
+		_after_label()
+	_pending_texture = null
+
 # Runs once the player has labelled the freshly collected evidence.
 func _on_evidence_labeled(evidence_name, strength):
 	_after_label()
@@ -88,6 +174,38 @@ func _after_label():
 	if all_evidence_collected():
 		# Don't auto-return to the courtroom: let the player press F when ready.
 		ready_for_courtroom = true
+	# Refresh the objective's X/4 counter (or the final return-to-court text).
+	_update_objective()
+
+# Called (from Dialog.gd) once the opening Uncle Josiah conversation finishes, so
+# the objective can advance from "speak with Uncle Josiah" to the search stage.
+func mark_uncle_spoken():
+	if uncle_spoken:
+		return
+	uncle_spoken = true
+	_update_objective()
+
+# Writes the progress-based objective text into the top objective bar:
+#  - before talking to Uncle Josiah: "Speak with Uncle Josiah."
+#  - while searching:                "Search ... Artifacts collected: X/4."
+#  - once all 4 are collected:       "All evidence collected. Press F to return to court."
+func _update_objective():
+	var panel = get_node_or_null("/root/Level2/CanvasLayer/Control/Objective")
+	if panel == null:
+		return
+	var label = panel.get_node("Label")
+	var text = ""
+	var two_line = false
+	if not uncle_spoken:
+		text = "Objective: Speak with Uncle Josiah."
+	elif all_evidence_collected():
+		text = "Objective: All evidence collected. Press F to return to court."
+	else:
+		text = "Objective: Search Uncle Josiah's house for abolitionist evidence. Artifacts collected: " + str(_collected_count()) + "/4."
+		two_line = true
+	label.bbcode_text = "[center]" + text + "[/center]"
+	# The search line is long enough to wrap to two lines; the others fit on one.
+	panel.margin_bottom = 74.0 if two_line else 52.0
 
 # Show the courtroom prompt only while the player is free to roam (hidden during
 # the Case File, dialogue, etc.), and return to the courtroom when F is pressed.
@@ -114,13 +232,24 @@ func _collected_count():
 			count += 1
 	return count
 
-# Returns to the courtroom using Level 2's existing transition structure: show
-# the courtroom canvas and play the concluding conversation, which then reveals
-# the "next level" screen (matching how Level 2 advanced before).
+# Returns to the courtroom (same structure as Level 1): show the courtroom canvas
+# and play the Level 2 opening dialogue, which then opens the Level 2 evidence
+# selection UI.
 func _enter_courtroom():
 	ready_for_courtroom = false
 	if courtroom_prompt != null:
 		courtroom_prompt.visible = false
+	# Now that the player has entered the courtroom, swap the exploration objective
+	# for the courtroom objective. The exploration objective (set in _ready) stays
+	# in place the whole time the player is inside Uncle Josiah's house.
+	var objective_panel = get_node_or_null("/root/Level2/CanvasLayer/Control/Objective")
+	if objective_panel != null:
+		var objective = objective_panel.get_node("Label")
+		objective.bbcode_text = "[center]Objective: Choose the strongest evidence to defend Darwin.[/center]"
+		# This objective fits on one line, so restore the standard bar height.
+		objective_panel.margin_bottom = 52.0
 	get_node("/root/Level2/CanvasLayer/Courtroom").visible = true
 	var dialog = get_node("/root/Level2/CanvasLayer/Control/Popup")
-	dialog.launch_conversation("Medallion")
+	# Level 2 courtroom opening dialogue; when it finishes, Dialog.gd opens the
+	# Level 2 evidence-selection UI (mirrors Level 1's Level1Complete flow).
+	dialog.launch_conversation("Level2Complete")

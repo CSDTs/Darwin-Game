@@ -4,6 +4,12 @@ onready var node = get_node("/root/"+ get_tree().get_current_scene().get_name()+
 onready var hint = $Area2D/Control
 onready var item
 
+# For Uncle / Captain: true once their opening conversation has been started. The
+# intro is gated on this flag rather than on artifact visibility, because Level 2's
+# artifacts are visible from the start (so the old "any hidden" test never fired
+# and Uncle's intro never launched).
+var intro_done = false
+
 func _ready():
 	if self.name == "Monro":
 		$Monro.visible = true
@@ -41,22 +47,52 @@ func _ready():
 	if prompt != null:
 		prompt.set_prompt(role, "Press Space to talk")
 
-func start_conversation():
-	if self.name == "Uncle" || self.name == "Captain":
-		if(item[0] != null && item[1] != null && item[2] != null):
-			if (item[0].visible != true || item[1].visible != true || item[2].visible != true):	
-				node.launch_popup()
-				hint.visible = false
-				$CanvasLayer/Control.visible = true
-		else:
-			node.launch_popup()
-			$CanvasLayer/Control.visible = true
+# Returns the conversation this NPC should play right now, or "" if it has nothing
+# to say (e.g. Uncle after his one-time intro). Used for BOTH the prompt (can_talk)
+# and the actual interaction, so the prompt and interaction always agree.
+func _which_conversation():
+	if self.name == "Uncle":
+		# Uncle Josiah: a single one-time conversation. Nothing afterwards.
+		if intro_done:
+			return ""
+		return "Uncle"
+	elif self.name == "Captain":
+		# A collected artifact is freed (a freed reference is not null), so use
+		# is_instance_valid(). Intro plays once (intro_done), then the "after" line
+		# once evidence has been collected.
+		var all_present = true
+		for it in item:
+			if not is_instance_valid(it):
+				all_present = false
+		if not all_present:
+			return "CaptainAfter"
+		if intro_done:
+			return ""
+		return "Captain"
 	else:
-		if(item != null):
-			if (item.visible != true):	
-				node.launch_popup()
-				hint.visible = false
-				$CanvasLayer/Control.visible = true
-		else:
-			node.launch_popup()
-			$CanvasLayer/Control.visible = true
+		# Level 1 professors. item is their single artifact node.
+		if is_instance_valid(item):
+			if item.visible != true:
+				return self.name          # opening (leads to the question menu)
+			return ""                     # unlocked but not yet collected -> nothing
+		return self.name + "After"         # collected -> short repeat line
+
+# True while the NPC has something to say; drives the "Press Space to talk" prompt.
+func can_talk():
+	return _which_conversation() != ""
+
+# Launches the current conversation. Called when the player presses Space inside
+# this NPC's talk area (no facing required).
+func start_conversation():
+	var convo = _which_conversation()
+	if convo == "":
+		return
+	node.init_conversation(convo)
+	node.launch_popup()
+	$CanvasLayer/Control.visible = true
+	if convo == self.name:
+		# The opening / intro line: hide the small hint and, for the one-time NPCs,
+		# mark the intro as done so the prompt stops appearing for them.
+		hint.visible = false
+		if self.name == "Uncle" or self.name == "Captain":
+			intro_done = true

@@ -6,8 +6,37 @@ var collected = {"Bone": false, "Rocks": false, "Portrait": false}
 # Display names shown in the Case File for each artifact node.
 var display_names = {"Bone": "Bone", "Rocks": "Plinian Society Note", "Portrait": "Portrait"}
 
+# Evidence-card copy per artifact: card name, fixed strength, what it is, and why
+# it matters. Reuses the same EvidenceCard as Level 2.
+var card_content = {
+	"Bone": {
+		"name": "Bone",
+		"strength": "Weak",
+		"shows": "Darwin studied anatomy and learned about the structure of living beings.",
+		"why": "This gives background on Darwin's scientific education, but it does not directly prove his abolitionist beliefs."
+	},
+	"Rocks": {
+		"name": "Rocks",
+		"strength": "Weak",
+		"shows": "Darwin studied natural history and geology in Edinburgh.",
+		"why": "This shows Darwin's early scientific training, but it does not directly answer the accusation about racism or slavery."
+	},
+	"Portrait": {
+		"name": "Portrait of Darwin and John Edmonstone",
+		"strength": "Strong",
+		"shows": "Darwin learned from John Edmonstone, a formerly enslaved man who opposed slavery.",
+		"why": "This connects Darwin to an early abolitionist influence and helps show that Darwin was shaped by people who rejected slavery and racial hierarchy."
+	}
+}
+
 onready var globals = get_node("/root/Globals")
 onready var courtroom_prompt = get_node_or_null("/root/Level1/CanvasLayer/Control/CourtroomPrompt")
+onready var evidence_card = get_node_or_null("/root/Level1/EvidenceCard")
+
+# The artifact whose evidence card is currently open, held until the player
+# continues (then it is added to the Case File).
+var _pending_item = null
+var _pending_texture = null
 
 # True once all evidence is collected: the player may now press F to enter court.
 var ready_for_courtroom = false
@@ -19,6 +48,9 @@ func _ready():
 	var case_file = get_node_or_null("/root/Level1/CaseFile")
 	if case_file != null:
 		case_file.connect("evidence_labeled", self, "_on_evidence_labeled")
+	# The evidence card's Continue button adds the artifact to the Case File.
+	if evidence_card != null:
+		evidence_card.connect("continued", self, "_on_card_continued")
 
 #back button to main menu screen
 func _Button_pressed():
@@ -28,23 +60,52 @@ func _Button_pressed():
 # collected and opens the Case File so the player can label it. The collection
 # flow continues once labeling is done (see _on_evidence_labeled).
 func collect_artifact(item):
+	# Show the evidence card first; the artifact is added to the Case File once the
+	# player continues from the card (see _on_card_continued).
+	if _pending_item != null:
+		return
+	_pending_item = item
+	var art_name = item.name
+	# Reuse the artifact's own image (the sprite shown in its world pickup preview).
+	var tex = null
+	var art_sprite = item.get_node_or_null("CanvasLayer/Control/" + art_name)
+	if art_sprite != null:
+		tex = art_sprite.texture
+	_pending_texture = tex
+	if evidence_card == null:
+		# No card available: collect directly (keeps the old behaviour working).
+		_on_card_continued()
+		return
+	var content = card_content[art_name] if card_content.has(art_name) else {}
+	var card_name = content["name"] if content.has("name") else art_name
+	var shows_text = content["shows"] if content.has("shows") else ""
+	var why_text = content["why"] if content.has("why") else ""
+	var strength = content["strength"] if content.has("strength") else ""
+	var strength_text = ("Evidence Strength: " + strength + " Evidence") if strength != "" else ""
+	evidence_card.show_card(card_name, tex, shows_text, why_text, strength_text)
+
+# Continue pressed on the evidence card: mark the artifact collected, add it to the
+# Case File with its fixed strength, and resume movement.
+func _on_card_continued():
+	var item = _pending_item
+	_pending_item = null
+	if item == null:
+		return
 	var art_name = item.name
 	if collected.has(art_name):
 		collected[art_name] = true
-	# Reuse the artifact's own image (the sprite shown in its world pickup preview).
-	var art_texture = null
-	var art_sprite = item.get_node_or_null("CanvasLayer/Control/" + art_name)
-	if art_sprite != null:
-		art_texture = art_sprite.texture
 	item.queue_free()
+	globals.canMove = true
+	var content = card_content[art_name] if card_content.has(art_name) else {}
+	var strength = content["strength"] if content.has("strength") else "Weak"
+	var desc = content["shows"] if content.has("shows") else ""
 	var case_file = get_node_or_null("/root/Level1/CaseFile")
 	if case_file != null:
-		var shown_name = art_name
-		if display_names.has(art_name):
-			shown_name = display_names[art_name]
-		case_file.open_label_mode(shown_name, art_texture, art_name)
+		var shown_name = display_names[art_name] if display_names.has(art_name) else art_name
+		case_file.add_evidence(shown_name, _pending_texture, art_name, strength, desc)
 	else:
 		_after_label()
+	_pending_texture = null
 
 # Runs once the player has labelled the freshly collected evidence.
 func _on_evidence_labeled(evidence_name, strength):

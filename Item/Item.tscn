@@ -53,6 +53,15 @@ scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 1 )
 playing = true
 
+[node name="Shadow" type="Sprite" parent="."]
+visible = false
+
+[node name="WorldSprite" type="Sprite" parent="."]
+visible = false
+
+[node name="Marker" type="Sprite" parent="."]
+visible = false
+
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -0.291962, -1.45978 )
 scale = Vector2( 0.1, 0.1 )
@@ -113,6 +122,12 @@ visible = false
 position = Vector2( 640, 310 )
 scale = Vector2( 0.875, 0.875 )
 texture = ExtResource( 12 )
+
+[node name="SermonNotes" type="Sprite" parent="CanvasLayer/Control"]
+visible = false
+position = Vector2( 640, 310 )
+scale = Vector2( 0.875, 0.875 )
+texture = ExtResource( 14 )
 
 [node name="Page1" type="Sprite" parent="CanvasLayer/Control"]
 visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Player/Lawyer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://CaseFile/CaseFile.tscn" type="PackedScene" id=25]
 [ext_resource path="res://EvidenceSelect.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Assets/Backgrounds/level1_grass_tile.png" type="Texture" id=27]
+[ext_resource path="res://EvidenceCard.tscn" type="PackedScene" id=28]
 
 [sub_resource type="TileSet" id=1]
 
@@ -305,3 +306,5 @@ text = "Did Darwin ever speak about slavery or abolition with you?"
 [node name="CaseFile" parent="." instance=ExtResource( 25 )]
 
 [node name="EvidenceSelect" parent="." instance=ExtResource( 26 )]
+
+[node name="EvidenceCard" parent="." instance=ExtResource( 28 )]

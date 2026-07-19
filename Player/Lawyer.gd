@@ -14,7 +14,10 @@ func _ready():
 	pass # Replace with function body.
 
 func _process (delta):
-	if Input.is_action_just_pressed("interact"):
+	# Only interact while the player is free to act, so Space does nothing while a
+	# dialogue, evidence card, Case File, strength selection, professor question
+	# menu or courtroom evidence UI is open (they all disable movement).
+	if Input.is_action_just_pressed("interact") and globals.canMove:
 		try_interact()
 
 func _physics_process (delta):
@@ -75,14 +78,23 @@ func play_animation (anim_name):
 		
 func try_interact ():
 	
+	# NPCs first: if the player is inside an NPC's talk area, talk to it. This uses
+	# the same range that shows the "Press Space to talk" prompt, so no facing is
+	# required (fixes the prompt-visible-but-can't-interact mismatch).
+	if globals.current_npc != null and is_instance_valid(globals.current_npc) and globals.current_npc.can_talk():
+		globals.current_npc.start_conversation()
+		return
+	# Otherwise, a facing-based raycast for items / other interactables. Only call
+	# interaction functions on objects that actually implement them, so plain
+	# StaticBody2D collision objects (walls, tables, furniture) are ignored instead
+	# of crashing. Artifacts have setItemControlLayer; others may use on_interact.
 	rayCast.cast_to = facingDir * interactDist
 	rayCast.force_raycast_update()
-	if rayCast.is_colliding():
-		if rayCast.get_collider() is KinematicBody2D:
-			rayCast.get_collider().start_conversation()
-			print(rayCast.get_collider().name)
-		elif rayCast.get_collider().has_method("on_interact"):
-			 rayCast.get_collider().on_interact(self)
-		elif rayCast.get_collider() is StaticBody2D:
-			rayCast.get_collider().setItemControlLayer(true)
+	if not rayCast.is_colliding():
+		return
+	var target = rayCast.get_collider()
+	if target.has_method("on_interact"):
+		target.on_interact(self)
+	elif target.has_method("setItemControlLayer"):
+		target.setItemControlLayer(true)
 

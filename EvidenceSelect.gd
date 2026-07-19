@@ -14,6 +14,12 @@ onready var continue_button = $Result/ContinueButton
 # The artifact the player chose to present (stored for later courtroom steps).
 var selected_evidence = ""
 
+# Root path of whichever level instances this UI, so the same selection screen
+# works in Level 1 and Level 2 without hardcoded node paths. In Level 1 this
+# resolves to "/root/Level1", so Level 1 behaviour is unchanged.
+func _scene_root():
+	return "/root/" + get_tree().get_current_scene().get_name()
+
 func _ready():
 	root.visible = false
 	result.visible = false
@@ -39,13 +45,19 @@ func open():
 	confirmation.text = ""
 	_hide_courtroom_characters()
 	_populate()
+	# Dark overlay behind the parchment panel to calm the busy courtroom background.
+	# Only shown in the Level 2 courtroom; Level 1's selection screen is unchanged.
+	# It is a child of Root, so it hides automatically when the panel closes.
+	var dim = root.get_node_or_null("Dim")
+	if dim != null:
+		dim.visible = get_tree().get_current_scene().get_name() == "Level2"
 	root.visible = true
 	globals.canMove = false
 
 # Hides the courtroom character portraits so they don't peek around the evidence
 # folder / result screen. They are re-shown per speaker when dialogue resumes.
 func _hide_courtroom_characters():
-	var court_node = get_node_or_null("/root/Level1/CanvasLayer/Courtroom")
+	var court_node = get_node_or_null(_scene_root() + "/CanvasLayer/Courtroom")
 	if court_node == null:
 		return
 	for n in ["Court", "Darwin", "Morris", "Prosecutor"]:
@@ -58,7 +70,7 @@ func _populate():
 		entries.remove_child(child)
 		child.queue_free()
 	# Same collected-evidence data the Case File uses.
-	var case_file = get_node_or_null("/root/Level1/CaseFile")
+	var case_file = get_node_or_null(_scene_root() + "/CaseFile")
 	var evidence = []
 	if case_file != null:
 		evidence = case_file.collected_evidence
@@ -72,10 +84,15 @@ func _populate():
 # One selectable evidence entry: a real Button (artifact icon + name/strength),
 # styled like a Case File card so it stays readable but is clearly clickable.
 func _make_option(e):
+	# Selection key stays the node name (Level 1's courtroom paths depend on it).
 	var option_name = e["name"]
 	if e.has("node_name") and e["node_name"] != "":
 		option_name = e["node_name"]
-	var text = "  " + option_name
+	# Label: Level 2 shows the descriptive display name; Level 1 keeps its node name.
+	var label_name = option_name
+	if get_tree().get_current_scene().get_name() == "Level2":
+		label_name = e["name"]
+	var text = "  " + label_name
 	if e.has("strength") and e["strength"] != "":
 		text += "     -     " + e["strength"] + " evidence"
 
@@ -132,11 +149,13 @@ func _on_evidence_selected(option_name):
 	selected_evidence = option_name
 	confirmation.text = "Selected Evidence: " + option_name
 	print("Evidence selected for the defense: ", option_name)
-	if option_name == "Rocks" or option_name == "Bone" or option_name == "Portrait":
-		# Hide the selection UI and play the matching courtroom dialogue. When it
-		# finishes, Dialog.gd calls show_result() (below).
+	if option_name == "Rocks" or option_name == "Bone" or option_name == "Portrait" or option_name == "Plate" or option_name == "Teapot" or option_name == "SermonNotes" or option_name == "Medallion":
+		# Hide the selection UI and play the matching courtroom dialogue (Rocks/Bone/
+		# Portrait are Level 1; Plate and Teapot are Level 2 weak paths; the Sermon
+		# Notes and Medallion are the Level 2 strong paths). When it finishes,
+		# Dialog.gd calls show_result() (below).
 		root.visible = false
-		var dialog = get_node_or_null("/root/Level1/CanvasLayer/Control/Popup")
+		var dialog = get_node_or_null(_scene_root() + "/CanvasLayer/Control/Popup")
 		if dialog != null:
 			dialog.launch_conversation(option_name + "Courtroom")
 
@@ -144,7 +163,7 @@ func _on_evidence_selected(option_name):
 # the dialogue finishes. Rocks/Bone use the weak layout; Portrait uses the strong
 # layout (same nodes/style, just different text and a taller body to fit).
 func show_result():
-	if selected_evidence == "Portrait":
+	if selected_evidence == "Portrait" or selected_evidence == "SermonNotes" or selected_evidence == "Medallion":
 		_set_result_strong()
 	else:
 		_set_result_weak()
@@ -160,6 +179,10 @@ func _set_result_weak():
 	result_conclusion.text = "The prosecution wins this round."
 	if selected_evidence == "Bone":
 		result_body.text = "The court is not convinced.\nThe bone shows Darwin's scientific education, but it does not prove that he opposed racism or slavery."
+	elif selected_evidence == "Plate":
+		result_body.text = "The court is not convinced.\nThe regular plate shows household context, but it does not prove Darwin's abolitionist influence or his rejection of racism."
+	elif selected_evidence == "Teapot":
+		result_body.text = "The court is not convinced.\nThe teapot shows household context, but it does not prove Darwin's abolitionist influence or his rejection of racism."
 	else:
 		result_body.text = "The court is not convinced.\nThe rocks show Darwin's scientific education, but they do not prove that he opposed racism or slavery."
 	_place(result_title, -205, -160)
@@ -172,7 +195,12 @@ func _set_result_weak():
 func _set_result_strong():
 	result_title.text = "Courtroom Result: Strong Evidence"
 	result_score.text = "Defense: 1\nProsecution: 0"
-	result_body.text = "The court is persuaded.\nThe portrait connects Darwin to John Edmonstone, a formerly enslaved teacher who opposed slavery.\n\nIt also points to Darwin's abolitionist background, including Josiah Wedgwood's anti-slavery medallion and the belief that all nations were made \"of one blood.\""
+	if selected_evidence == "SermonNotes":
+		result_body.text = "The court is persuaded.\nThe \"One Blood\" sermon notes show that Darwin was surrounded by the belief that all humans share one common origin.\n\nThat belief challenged the idea that different races were separate kinds of human beings."
+	elif selected_evidence == "Medallion":
+		result_body.text = "The court is persuaded.\nThe anti-slavery medallion showed an enslaved man kneeling in chains with the words, \"Am I not a man and a brother?\"\n\nIt connected Darwin's family to abolitionist activism and to the belief that all human beings share dignity and worth."
+	else:
+		result_body.text = "The court is persuaded.\nThe portrait connects Darwin to John Edmonstone, a formerly enslaved teacher who opposed slavery.\n\nIt also points to Darwin's abolitionist background, including Josiah Wedgwood's anti-slavery medallion and the belief that all nations were made \"of one blood.\""
 	result_conclusion.text = "The defense wins this round."
 	_place(result_title, -224, -182)
 	_place(result_score, -164, -100)
@@ -185,6 +213,10 @@ func _place(node, top, bottom):
 	node.margin_top = top
 	node.margin_bottom = bottom
 
-# Continue to the next stage of the investigation (Level 2).
+# Continue to the next stage of the investigation. Level 1 -> Level 2 (unchanged);
+# the Level 2 courtroom continues on to Level 3.
 func _on_continue_pressed():
-	get_tree().change_scene("res://Level2.tscn")
+	if get_tree().get_current_scene().get_name() == "Level2":
+		get_tree().change_scene("res://Level3.tscn")
+	else:
+		get_tree().change_scene("res://Level2.tscn")

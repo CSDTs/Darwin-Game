@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plate.png-c231abfe2d67bd29fd319037e11c6b7b.stex"
+path="res://.import/sermon_notes.png-972ba56a8ca42df08500f3a244c72d89.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Objects/plate.png"
-dest_files=[ "res://.import/plate.png-c231abfe2d67bd29fd319037e11c6b7b.stex" ]
+source_file="res://Assets/Objects/sermon_notes.png"
+dest_files=[ "res://.import/sermon_notes.png-972ba56a8ca42df08500f3a244c72d89.stex" ]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

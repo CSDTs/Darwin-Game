@@ -11,7 +11,7 @@ var lvl1 = [
 
 var lvl2 = [
 	["Charles Darwin", 'Welcome to my Uncle Josaiah\'s house!'],
-	["Charles Darwin", 'Try interacting with him by using F.']
+	["Charles Darwin", 'Try interacting with him by using Space.']
 ]
 
 var lvl3 = [
@@ -44,6 +44,97 @@ var level1Complete = [
 	["[center]Time Travel Court[/center]", "Some may speak more directly to his opposition to slavery and racism."],
 	["[center]Time Travel Court[/center]", "The court is ready."],
 	["[center]Time Travel Court[/center]", "Select the first piece of evidence you wish to present."]
+]
+
+# Level 2 courtroom: opening exchange, then the evidence-selection UI opens.
+# Long lines are split into short entries so no line needs scrolling.
+var level2Complete = [
+	["[center]Robert Morris[/center]", "I've returned from Uncle Josiah's house with new evidence."],
+	["[center]Charles Darwin[/center]", "Good. My family's influence is important to this case."],
+	["[center]Prosecutor[/center]", "Influence does not erase the charge."],
+	["[center]Prosecutor[/center]", "Darwin's theory was later used to rank human beings and justify racism."],
+	["[center]Robert Morris[/center]", "That is why this evidence matters."],
+	["[center]Robert Morris[/center]", "The court must consider what ideas shaped Darwin himself."],
+	["[center]Charles Darwin[/center]", "My family opposed slavery."],
+	["[center]Charles Darwin[/center]", "I did not believe humanity was divided into separate races of unequal worth."],
+	["[center]Prosecutor[/center]", "Then prove it."],
+	["[center]Prosecutor[/center]", "Show the court evidence that connects Darwin's family to abolitionist belief."],
+	["[center]Time Travel Court[/center]", "Robert Morris, you have searched Uncle Josiah's house."],
+	["[center]Time Travel Court[/center]", "Some objects may only show household context."],
+	["[center]Time Travel Court[/center]", "Others may reveal stronger abolitionist influence."],
+	["[center]Time Travel Court[/center]", "Select evidence for Darwin's defense."]
+]
+
+# Level 2 courtroom Regular Plate path: the weak-evidence argument that plays when
+# the player presents the plate. Followed by the weak result screen.
+var plateCourtroom = [
+	["[center]Robert Morris[/center]", "I present the regular plate from Uncle Josiah's house."],
+	["[center]Time Travel Court[/center]", "The court recognizes the evidence. Explain its relevance."],
+	["[center]Robert Morris[/center]", "This plate shows the household environment Darwin's family lived in."],
+	["[center]Prosecutor[/center]", "A plate? The defense is presenting dinnerware?"],
+	["[center]Prosecutor[/center]", "This does not prove abolitionist belief. It does not prove Darwin rejected racism."],
+	["[center]Charles Darwin[/center]", "The plate may show family context, but it does not speak strongly to the values that shaped me."],
+	["[center]Robert Morris[/center]", "I understand. This object gives background, but it does not directly answer the accusation."],
+	["[center]Time Travel Court[/center]", "The court agrees."],
+	["[center]Time Travel Court[/center]", "This evidence is weak. It shows household context, not a clear connection to abolitionist influence."],
+	["[center]Prosecutor[/center]", "Then the charge still stands."],
+	["[center]Time Travel Court[/center]", "The prosecution wins this round."]
+]
+
+# Level 2 courtroom Teapot path: the weak-evidence argument that plays when the
+# player presents the teapot. Followed by the weak result screen.
+var teapotCourtroom = [
+	["[center]Robert Morris[/center]", "I present the teapot from Uncle Josiah's house."],
+	["[center]Time Travel Court[/center]", "The court recognizes the evidence. Explain its relevance."],
+	["[center]Robert Morris[/center]", "This teapot shows the household Darwin's family lived in."],
+	["[center]Prosecutor[/center]", "A teapot? The defense is offering tea instead of proof?"],
+	["[center]Prosecutor[/center]", "This object does not show abolitionist belief. It does not prove Darwin rejected racism."],
+	["[center]Charles Darwin[/center]", "The teapot may show family setting, but it does not reveal the moral ideas that shaped me."],
+	["[center]Robert Morris[/center]", "I understand. It gives background, but it is not strong evidence for this case."],
+	["[center]Time Travel Court[/center]", "The court agrees."],
+	["[center]Time Travel Court[/center]", "This evidence is weak. It shows household context, not a clear connection to abolitionist influence."],
+	["[center]Prosecutor[/center]", "Then the defense has failed to answer the accusation."],
+	["[center]Time Travel Court[/center]", "The prosecution wins this round."]
+]
+
+# Level 2 courtroom "One Blood" Sermon Notes path: the strong-evidence argument
+# that plays when the player presents the sermon notes. Followed by the strong
+# result screen. A couple of long lines are split into consecutive same-speaker
+# entries so no line needs scrolling (matching the Level 1 courtroom style).
+var sermonNotesCourtroom = [
+	["[center]Robert Morris[/center]", "I present the \"One Blood\" sermon notes from Uncle Josiah's house."],
+	["[center]Time Travel Court[/center]", "The court recognizes the evidence. Explain its relevance."],
+	["[center]Robert Morris[/center]", "These notes show the belief that all nations were made \"of one blood.\""],
+	["[center]Robert Morris[/center]", "That idea challenged the claim that different races were separate kinds of human beings."],
+	["[center]Prosecutor[/center]", "A sermon note proves a belief was present in the household."],
+	["[center]Prosecutor[/center]", "But how does that prove it shaped Darwin himself?"],
+	["[center]Charles Darwin[/center]", "Because those ideas surrounded me. They shaped how I understood humanity."],
+	["[center]Charles Darwin[/center]", "I did not see human beings as separate races of unequal worth."],
+	["[center]Robert Morris[/center]", "Exactly. These notes show the moral and religious ideas"],
+	["[center]Robert Morris[/center]", "that helped shape Darwin before he developed his theory."],
+	["[center]Time Travel Court[/center]", "This evidence connects Darwin's family environment to the belief that all humans share one common origin."],
+	["[center]Time Travel Court[/center]", "The sermon notes are strong evidence for Darwin's rejection of racial separation."]
+]
+
+# Level 2 courtroom Anti-Slavery Medallion path: the strong-evidence argument that
+# plays when the player presents the medallion. Followed by the strong result
+# screen. A few long lines are split into consecutive same-speaker entries so no
+# line needs scrolling (matching the Level 1 courtroom style).
+var medallionCourtroom = [
+	["[center]Robert Morris[/center]", "I present the anti-slavery medallion from Uncle Josiah's house."],
+	["[center]Time Travel Court[/center]", "The court recognizes the evidence. Explain its relevance."],
+	["[center]Robert Morris[/center]", "This medallion showed an enslaved man kneeling in chains"],
+	["[center]Robert Morris[/center]", "with the words, \"Am I not a man and a brother?\""],
+	["[center]Robert Morris[/center]", "It was not just decoration."],
+	["[center]Robert Morris[/center]", "It forced people to recognize the humanity of those slavery tried to degrade."],
+	["[center]Prosecutor[/center]", "A symbol can stir emotion, but how does that prove Darwin was shaped by abolitionist belief?"],
+	["[center]Charles Darwin[/center]", "Because this was part of the moral world I inherited. My family opposed slavery openly."],
+	["[center]Charles Darwin[/center]", "That message taught that human beings were not separate kinds of people with different worth."],
+	["[center]Robert Morris[/center]", "Exactly. The medallion connects Darwin's family to a public movement against slavery"],
+	["[center]Robert Morris[/center]", "and to the belief in shared human dignity."],
+	["[center]Time Travel Court[/center]", "This evidence is powerful."],
+	["[center]Time Travel Court[/center]", "The medallion shows that Darwin's family was tied to abolitionist activism, not racial hierarchy."],
+	["[center]Time Travel Court[/center]", "It is strong evidence for Darwin's rejection of slavery and racial separation."]
 ]
 
 # Level 1 courtroom Rocks path: the weak-evidence argument that plays when the
@@ -530,6 +621,16 @@ func init_conversation(conversation):
 		main = page3
 	elif conversation == "Level1Complete":
 		main = level1Complete
+	elif conversation == "Level2Complete":
+		main = level2Complete
+	elif conversation == "PlateCourtroom":
+		main = plateCourtroom
+	elif conversation == "TeapotCourtroom":
+		main = teapotCourtroom
+	elif conversation == "SermonNotesCourtroom":
+		main = sermonNotesCourtroom
+	elif conversation == "MedallionCourtroom":
+		main = medallionCourtroom
 	elif conversation == "RocksCourtroom":
 		main = rocksCourtroom
 	elif conversation == "BoneCourtroom":
@@ -789,6 +890,12 @@ func load_dialog():
 			var evidence_select = get_node_or_null("/root/Level1/EvidenceSelect")
 			if evidence_select != null:
 				evidence_select.open()
+		elif main == level2Complete:
+			# Level 2: same structure as Level 1 — keep the courtroom backdrop and
+			# open the Level 2 evidence selection (populated from Level 2's Case File).
+			var evidence_select_l2 = get_node_or_null("/root/Level2/EvidenceSelect")
+			if evidence_select_l2 != null:
+				evidence_select_l2.open()
 		elif main == rocksCourtroom or main == boneCourtroom or main == portraitCourtroom:
 			# Courtroom argument finished: show the result screen (weak for
 			# Rocks/Bone, strong for Portrait — EvidenceSelect decides from the
@@ -796,6 +903,13 @@ func load_dialog():
 			var evidence_select_r = get_node_or_null("/root/Level1/EvidenceSelect")
 			if evidence_select_r != null:
 				evidence_select_r.show_result()
+		elif main == plateCourtroom or main == teapotCourtroom or main == sermonNotesCourtroom or main == medallionCourtroom:
+			# Level 2 argument finished: show the result screen (weak for Plate/Teapot,
+			# strong for the Sermon Notes / Medallion — EvidenceSelect decides from the
+			# stored selection).
+			var evidence_select_p = get_node_or_null("/root/Level2/EvidenceSelect")
+			if evidence_select_p != null:
+				evidence_select_p.show_result()
 		elif main == uncle:
 			get_node("/root/Level2/Teapot").visible = true
 			get_node("/root/Level2/Teapot/CollisionShape2D").one_way_collision = false
@@ -803,7 +917,13 @@ func load_dialog():
 			get_node("/root/Level2/Plate/CollisionShape2D").one_way_collision = false
 			get_node("/root/Level2/Medallion").visible = true
 			get_node("/root/Level2/Medallion/CollisionShape2D").one_way_collision = false
+			get_node("/root/Level2/SermonNotes").visible = true
+			get_node("/root/Level2/SermonNotes/CollisionShape2D").one_way_collision = false
 			get_node("/root/Level2/Uncle/CanvasLayer/Control").visible = false
+			# The opening Uncle conversation is done: advance the Level 2 objective.
+			var level2 = get_node_or_null("/root/Level2")
+			if level2 != null and level2.has_method("mark_uncle_spoken"):
+				level2.mark_uncle_spoken()
 		elif main == failTeapot:
 			get_node("/root/Level2/CanvasLayer/Courtroom").visible = false
 			get_node("/root/Level2/Teapot").queue_free()
@@ -824,15 +944,27 @@ func load_dialog():
 			get_node("/root/Level3/Page3").visible = true
 			get_node("/root/Level3/Page3/CollisionShape2D").one_way_collision = false
 			get_node("/root/Level3/Captain/CanvasLayer/Control").visible = false
+			# The opening Captain conversation is done: advance the Level 3 objective
+			# (mirrors Level 2's Uncle -> mark_uncle_spoken).
+			var level3 = get_node_or_null("/root/Level3")
+			if level3 != null and level3.has_method("mark_fitzroy_spoken"):
+				level3.mark_fitzroy_spoken()
 		elif main == page1:
 			get_node("/root/Level3/CanvasLayer/Courtroom").visible = false
-			get_node("/root/Level3/Page1").queue_free()
+			# The page is now collected (and freed) before court, so guard the free.
+			var p1 = get_node_or_null("/root/Level3/Page1")
+			if p1 != null:
+				p1.queue_free()
 		elif main == page2:
 			get_node("/root/Level3/CanvasLayer/Courtroom").visible = false
-			get_node("/root/Level3/Page2").queue_free()
+			var p2 = get_node_or_null("/root/Level3/Page2")
+			if p2 != null:
+				p2.queue_free()
 		elif main == page3:
 			get_node("/root/Level3/CanvasLayer/Courtroom").visible = false
-			get_node("/root/Level3/Page3").queue_free()
+			var p3 = get_node_or_null("/root/Level3/Page3")
+			if p3 != null:
+				p3.queue_free()
 			get_node("/root/Level3/CanvasLayer/NextLevel").visible = true
 			
 	dialog_index += 1
@@ -985,14 +1117,16 @@ var courtroom_shown = {"Court": false, "Darwin": false, "Morris": false, "Prosec
 # True while one of the Level 1 courtroom conversations is playing, so the
 # speaker-to-portrait logic only runs during the courtroom scene.
 func _is_courtroom_convo():
-	return main == level1Complete or main == rocksCourtroom or main == boneCourtroom or main == portraitCourtroom
+	return main == level1Complete or main == level2Complete or main == plateCourtroom or main == teapotCourtroom or main == sermonNotesCourtroom or main == medallionCourtroom or main == rocksCourtroom or main == boneCourtroom or main == portraitCourtroom
 
 # Strips the [center] bbcode tags from a speaker label and trims whitespace.
 func _plain_name(raw):
 	return raw.replace("[center]", "").replace("[/center]", "").strip_edges()
 
 func _courtroom_node():
-	return get_node_or_null("/root/Level1/CanvasLayer/Courtroom")
+	# Scene-aware so Level 2's courtroom uses its own Courtroom node (Level 1 still
+	# resolves to /root/Level1/... exactly as before).
+	return get_node_or_null("/root/" + get_tree().get_current_scene().get_name() + "/CanvasLayer/Courtroom")
 
 # Bottom-aligned position for a character in a given slot, so all portraits share
 # a common baseline regardless of their individual scale/height.

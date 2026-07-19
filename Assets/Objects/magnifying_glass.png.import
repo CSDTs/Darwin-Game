@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plate.png-c231abfe2d67bd29fd319037e11c6b7b.stex"
+path="res://.import/magnifying_glass.png-1d92bdbe9eae8b67fec9d90189ff2847.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Objects/plate.png"
-dest_files=[ "res://.import/plate.png-c231abfe2d67bd29fd319037e11c6b7b.stex" ]
+source_file="res://Assets/Objects/magnifying_glass.png"
+dest_files=[ "res://.import/magnifying_glass.png-1d92bdbe9eae8b67fec9d90189ff2847.stex" ]
 
 [params]
 

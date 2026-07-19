@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Item/Item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Scripts/CameraFollow.gd" type="Script" id=7]
 [ext_resource path="res://Player/Lawyer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Backgrounds/wedgwood_house_map_floor.png" type="Texture" id=17]
+[ext_resource path="res://EvidenceCard.tscn" type="PackedScene" id=18]
+[ext_resource path="res://CaseFile/CaseFile.tscn" type="PackedScene" id=19]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 134, 28, 82, 28, 82, 1, 134, 1 )
@@ -135,31 +137,31 @@ points = PoolVector2Array( 1069, 163, 1069, 322, 6, 321, 45, 226, 167, 250, 182,
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 33.8315, 82.4475 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 66.546, 28.5005 )
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 43.6597, 22.1799 )
 
-[sub_resource type="RectangleShape2D" id=26]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 85.4644, 22.1799 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 41.8032, 35.3751 )
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 31.5904, 34.4935 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 35.8854, 44.4189 )
 
-[sub_resource type="RectangleShape2D" id=27]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 6.99487, 165.273 )
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 6.99487, 42.9002 )
 
-[sub_resource type="RectangleShape2D" id=25]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 22.2481, 18.4332 )
 
 [node name="Level3" type="Node2D"]
@@ -188,23 +190,30 @@ rotation = 3.09857
 scale = Vector2( 0.1, 0.1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 current = true
 zoom = Vector2( 1.2, 1.2 )
 script = ExtResource( 7 )
 
 [node name="Page1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 673.44, 188.198 )
+visible = true
+position = Vector2( 951.033, -126.408 )
 
 [node name="Page2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 521.552, 104.59 )
+visible = true
+position = Vector2( 1345.08, -21.2522 )
 
 [node name="Page3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 341.796, 185.411 )
+visible = true
+position = Vector2( 1287.46, 290.896 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
 
+[node name="CaseFile" parent="." instance=ExtResource( 19 )]
+
+[node name="EvidenceCard" parent="." instance=ExtResource( 18 )]
+
 [node name="Node2D" type="Node2D" parent="."]
+visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
 
@@ -216,72 +225,72 @@ shape = SubResource( 12 )
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 position = Vector2( 1044.79, 324.996 )
 rotation = 1.57248
-shape = SubResource( 14 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2D30" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 position = Vector2( 316.743, 328.01 )
 rotation = 1.57248
-shape = SubResource( 14 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2D31" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2( 312.221, -146.802 )
+position = Vector2( 321.552, -149.135 )
 rotation = 1.57248
-shape = SubResource( 14 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2D32" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2( 1038.76, -146.802 )
+position = Vector2( 1049.47, -146.172 )
 rotation = 1.57248
-shape = SubResource( 14 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2( 1383.62, 168.549 )
+position = Vector2( 1391.58, 168.549 )
 rotation = 3.1555
-shape = SubResource( 15 )
+shape = SubResource( 14 )
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 position = Vector2( 1574.63, 94.4349 )
 rotation = 3.1555
-shape = SubResource( 26 )
+shape = SubResource( 15 )
 
 [node name="CollisionShape2D23" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2( 593.191, 94.3723 )
+position = Vector2( 600.489, 91.8991 )
 rotation = 6.27045
-shape = SubResource( 19 )
+shape = SubResource( 16 )
 
 [node name="CollisionShape2D28" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 position = Vector2( 1281.49, -90.892 )
 rotation = 8.11112
-shape = SubResource( 22 )
+shape = SubResource( 17 )
 
 [node name="CollisionShape2D29" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 position = Vector2( 1422.13, -22.4192 )
 rotation = 8.11112
-shape = SubResource( 22 )
+shape = SubResource( 17 )
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2( -130.866, -81.0571 )
+position = Vector2( -134.365, -81.0571 )
 rotation = 6.27692
-shape = SubResource( 24 )
+shape = SubResource( 18 )
 
 [node name="CollisionShape2D18" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 position = Vector2( 103.158, 91.6203 )
 rotation = 6.27692
-shape = SubResource( 27 )
+shape = SubResource( 19 )
 
 [node name="CollisionShape2D19" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 position = Vector2( 150.871, -67.4247 )
 rotation = 4.70404
-shape = SubResource( 28 )
+shape = SubResource( 20 )
 
 [node name="CollisionShape2D20" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 position = Vector2( 146.327, 250.665 )
 rotation = 4.70404
-shape = SubResource( 28 )
+shape = SubResource( 20 )
 
 [node name="CollisionShape2D17" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2( -94.534, 282.038 )
+position = Vector2( -86.3695, 283.204 )
 rotation = 6.27692
-shape = SubResource( 25 )
+shape = SubResource( 21 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/StaticBody2D"]
 visible = false
