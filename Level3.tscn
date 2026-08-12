@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Item/Item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Backgrounds/wedgwood_house_map_floor.png" type="Texture" id=17]
 [ext_resource path="res://EvidenceCard.tscn" type="PackedScene" id=18]
 [ext_resource path="res://CaseFile/CaseFile.tscn" type="PackedScene" id=19]
+[ext_resource path="res://EvidenceSelect.tscn" type="PackedScene" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 134, 28, 82, 28, 82, 1, 134, 1 )
@@ -209,6 +210,8 @@ position = Vector2( 1287.46, 290.896 )
 [node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
 
 [node name="CaseFile" parent="." instance=ExtResource( 19 )]
+
+[node name="EvidenceSelect" parent="." instance=ExtResource( 20 )]
 
 [node name="EvidenceCard" parent="." instance=ExtResource( 18 )]
 

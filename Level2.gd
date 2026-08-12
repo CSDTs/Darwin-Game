@@ -87,6 +87,10 @@ func _ready():
 	if evidence_card != null:
 		evidence_card.connect("continued", self, "_on_card_continued")
 
+	# Re-apply saved progress if the player has been here before (Back / level select).
+	# On a fresh game there is no saved data, so this is a no-op.
+	_restore_progress()
+
 
 #back button to main menu screen
 func _Button_pressed():
@@ -176,6 +180,8 @@ func _after_label():
 		ready_for_courtroom = true
 	# Refresh the objective's X/4 counter (or the final return-to-court text).
 	_update_objective()
+	# Persist the collection (Case File entry + collected flag) immediately.
+	_save_progress()
 
 # Called (from Dialog.gd) once the opening Uncle Josiah conversation finishes, so
 # the objective can advance from "speak with Uncle Josiah" to the search stage.
@@ -184,6 +190,7 @@ func mark_uncle_spoken():
 		return
 	uncle_spoken = true
 	_update_objective()
+	_save_progress()
 
 # Writes the progress-based objective text into the top objective bar:
 #  - before talking to Uncle Josiah: "Speak with Uncle Josiah."
@@ -253,3 +260,51 @@ func _enter_courtroom():
 	# Level 2 courtroom opening dialogue; when it finishes, Dialog.gd opens the
 	# Level 2 evidence-selection UI (mirrors Level 1's Level1Complete flow).
 	dialog.launch_conversation("Level2Complete")
+
+# --- Persistence (Back / level select preserve progress; only Start resets) ---
+
+# Writes Level 2's current progress to the persistent global store: collected
+# artifacts, whether Uncle Josiah has been spoken to, and the Case File entries.
+func _save_progress():
+	var cf = get_node_or_null("/root/Level2/CaseFile")
+	var entries = []
+	if cf != null:
+		entries = cf.collected_evidence
+	globals.save_level_progress("Level2", {
+		"collected": collected,
+		"uncle_spoken": uncle_spoken,
+		"case_file": entries
+	})
+
+# Re-applies saved Level 2 progress on scene load: restores collected flags, the
+# uncle_spoken flag and Case File entries, then rehydrates the world — collected
+# artifacts are freed, and (if Uncle has been spoken to) the remaining artifacts are
+# revealed with collision off, exactly as the Uncle dialogue does. Uncle's one-time
+# intro/prompt is suppressed so it does not replay.
+func _restore_progress():
+	var data = globals.get_level_progress("Level2")
+	if data == null:
+		return
+	if data.has("collected"):
+		collected = data["collected"]
+	uncle_spoken = data["uncle_spoken"] if data.has("uncle_spoken") else false
+	var cf = get_node_or_null("/root/Level2/CaseFile")
+	if cf != null and data.has("case_file"):
+		cf.collected_evidence = data["case_file"]
+	for id in ["Plate", "Teapot", "SermonNotes", "Medallion"]:
+		var node = get_node_or_null("/root/Level2/" + id)
+		if node == null:
+			continue
+		if collected.get(id, false):
+			node.queue_free()
+		elif uncle_spoken:
+			node.visible = true
+			var col = node.get_node_or_null("CollisionShape2D")
+			if col != null:
+				col.one_way_collision = false
+	if uncle_spoken:
+		var uncle = get_node_or_null("/root/Level2/Uncle")
+		if uncle != null:
+			uncle.intro_done = true
+	ready_for_courtroom = all_evidence_collected()
+	_update_objective()

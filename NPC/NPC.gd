@@ -57,18 +57,19 @@ func _which_conversation():
 			return ""
 		return "Uncle"
 	elif self.name == "Captain":
-		# A collected artifact is freed (a freed reference is not null), so use
-		# is_instance_valid(). Intro plays once (intro_done), then the "after" line
-		# once evidence has been collected.
-		var all_present = true
-		for it in item:
-			if not is_instance_valid(it):
-				all_present = false
-		if not all_present:
-			return "CaptainAfter"
-		if intro_done:
+		# Level 3 is a two-step Captain flow, driven by the Level 3 script's state:
+		#   1) the intro plays first (before FitzRoy has been spoken to),
+		#   2) after ALL pages are collected the Captain becomes interactable again for
+		#      the "return with the evidence" line, which then sends the player to court.
+		# In between (during collection) he has nothing to say (no prompt).
+		var level3 = get_node_or_null("/root/Level3")
+		if level3 == null:
 			return ""
-		return "Captain"
+		if not level3.has_spoken_to_fitzroy:
+			return "Captain"
+		if level3.all_evidence_collected() and not level3.fitzroy_return_done:
+			return "CaptainReturn"
+		return ""
 	else:
 		# Level 1 professors. item is their single artifact node.
 		if is_instance_valid(item):

@@ -68,7 +68,14 @@ func _ready():
 		$CanvasLayer/Control/RichTextLabel.bbcode_text = "[center]Tapirs existing in East Indian seas. Marsupial animals all show greater connection in quadrupeds, but plants do not follow by any means.[/center]"
 	elif self.name == "Page3":
 		$CanvasLayer/Control/Page3.visible = true
-		$CanvasLayer/Control/RichTextLabel.bbcode_text = "[center]Here is a journal entry about a Black teacher who was the intellectual equal to his white colleagues. That must be John Edmonstone. And next to i another quote: \"Animals whom we have made our slaves, we do not like to consider our equals. Do not slaveholders wish to make the black man other kind?\"[/center]"
+		# Level 3 winning artifact: Darwin's own journal entry on human origins. Use the
+		# "darwin journal entry" art (falling back to the default page art until the
+		# editor imports the asset). The old Edmonstone/Black-teacher reference here was
+		# redundant with Level 1, so it has been replaced with Darwin's own words.
+		var journal_path = "res://Assets/Objects/darwin journal entry.png"
+		if ResourceLoader.exists(journal_path):
+			$CanvasLayer/Control/Page3.texture = load(journal_path)
+		$CanvasLayer/Control/RichTextLabel.bbcode_text = "[center]\"Animals whom we have made our slaves we do not like to consider our equals.— Do not slave holders wish to make the black man other kind\"[/center]"
 	
 	# --- Level 2 natural presentation ---
 	# Level 2 artifacts are real household objects placed around Uncle Josiah's
@@ -126,63 +133,26 @@ func _ready():
 			$Shadow.modulate = Color(0, 0, 0, shadow_alpha)
 			$Shadow.visible = true
 		$WorldSprite.visible = true
-		# Small "inspectable evidence" magnifying-glass marker placed just above and
-		# to the side of the artifact (never covering it). It is a plain Sprite (no
-		# collision) and a child of this item, so it hides automatically when the
-		# artifact is collected/freed. Only shown once the asset exists in the
-		# project. Sized to a small ~22 world px width regardless of source size.
-		var mag_path = "res://Assets/Objects/magnifying_glass.png"
-		if ResourceLoader.exists(mag_path):
-			var mag = load(mag_path)
-			$Marker.texture = mag
-			# Size and place the marker PROPORTIONALLY to this artifact, so it always
-			# reads as a small tag pinned to the object's top-right corner instead of
-			# a fixed icon floating far away:
-			#   - width ~46% of the artifact (a helper, still clearly smaller),
-			#   - offset up-and-right by a fraction of the artifact width,
-			#   - slightly transparent so the artifact stays the primary object.
-			# Positions are item-local; self.scale.x is the item root scale (2), so a
-			# local offset p renders at 2*p world units from the artifact centre.
-			var art_w = l2_target_width[self.name]
-			var mark_w = art_w * 0.46
-			var ms = mark_w / max(1.0, mag.get_width() * self.scale.x)
-			marker_base_scale = ms
-			$Marker.scale = Vector2(ms, ms)
-			$Marker.position = Vector2(art_w * 0.26, -art_w * 0.26)
-			$Marker.modulate = Color(1, 1, 1, 0.85)
-			$Marker.visible = true
+		# No magnifying-glass marker: Level 2 artifacts stand out purely through the
+		# strong yellow glow applied in _process. The Marker sprite stays hidden.
+		$Marker.visible = false
 
 func _process(delta):
 	# Show the interaction prompt ("Press Space...") while the player is near and the
 	# artifact is revealed. The prompt hides itself during dialogue / card / Case File.
 	$InteractionPrompt.set_showing(player_near and visible)
 
-	# Proximity highlight + soft yellow "glow" breathing for Level 2 household
-	# artifacts (in place of the shared glowing pickup box). The artifact rests at
-	# its muted base tint (warmer while the player is near) and gently breathes a
-	# warm brightening in and out — an additive lift weighted toward red/green (and
-	# little blue) so it reads as a soft yellow glow on the object rather than a
-	# plain white sheen. Same highlight language as the magnifying glass, but milder
-	# (brightness only — no opacity/scale change, no ring or halo), so the object
-	# softly stands out while staying part of the room.
+	# Strong yellow "glow" breathing for Level 2 household artifacts (in place of the
+	# shared glowing pickup box). The artifact rests at its muted base tint (warmer
+	# while the player is near) and breathes a bold warm brightening in and out — a
+	# large additive lift on red/green with almost no blue, so it reads as a strong
+	# yellow glow on the object (brightness only — no ring, halo, opacity or scale
+	# change), making the object clearly stand out in the room.
 	if is_natural_item:
 		var art_pulse = 0.5 + 0.5 * sin(OS.get_ticks_msec() / 1000.0 * 3.0)
-		var lift = 0.4 * art_pulse
+		var lift = 0.85 * art_pulse
 		var base_tint = l2_near_tint if (player_near and visible and globals.canMove) else l2_base_tint
-		$WorldSprite.modulate = Color(base_tint.r + lift, base_tint.g + lift * 0.85, base_tint.b + lift * 0.28, base_tint.a)
-		# Gentle pulse on the magnifying-glass marker so it's easier to notice: a
-		# soft opacity breath (70% -> 100%) plus a very small scale breath
-		# (92% -> 100% of its rest size, so it never gets larger than the artifact).
-		# Scaling is around the sprite's own centre, so it doesn't drift.
-		if $Marker.visible and marker_base_scale > 0.0:
-			var pulse = 0.5 + 0.5 * sin(OS.get_ticks_msec() / 1000.0 * 3.0)
-			# Stronger, but still gentle, glow: a higher opacity floor (82% -> 100%)
-			# plus a soft brighten at the peak (up to +15%) so the marker reads as a
-			# subtle glow rather than a flat icon. Scale breathes 92% -> 100% of rest.
-			var glow = lerp(1.0, 1.15, pulse)
-			$Marker.modulate = Color(glow, glow, glow, lerp(0.82, 1.0, pulse))
-			var msc = marker_base_scale * lerp(0.92, 1.0, pulse)
-			$Marker.scale = Vector2(msc, msc)
+		$WorldSprite.modulate = Color(base_tint.r + lift, base_tint.g + lift * 0.9, base_tint.b + lift * 0.12, base_tint.a)
 		# Interact from anywhere inside the enlarged proximity area (not only when
 		# the raycast happens to hit the small object), so pickups are forgiving.
 		if player_near and visible and globals.canMove and Input.is_action_just_pressed("interact"):

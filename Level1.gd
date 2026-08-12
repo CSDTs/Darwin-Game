@@ -41,6 +41,10 @@ var _pending_texture = null
 # True once all evidence is collected: the player may now press F to enter court.
 var ready_for_courtroom = false
 
+# Snapshot of artifact collected/visible state, used in _process to persist an
+# unlock (professor reveal) even if the player leaves before collecting the artifact.
+var _last_unlock_snapshot = ""
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var back = get_node("/root/Level1/CanvasLayer/Control/Button")
@@ -51,6 +55,11 @@ func _ready():
 	# The evidence card's Continue button adds the artifact to the Case File.
 	if evidence_card != null:
 		evidence_card.connect("continued", self, "_on_card_continued")
+	# Re-apply saved progress if the player has been here before (Back / level select).
+	# On a fresh game there is no saved data, so this is a no-op and Level 1 behaves
+	# exactly as before.
+	_restore_progress()
+	_last_unlock_snapshot = _unlock_snapshot()
 
 #back button to main menu screen
 func _Button_pressed():
@@ -80,12 +89,13 @@ func collect_artifact(item):
 	var card_name = content["name"] if content.has("name") else art_name
 	var shows_text = content["shows"] if content.has("shows") else ""
 	var why_text = content["why"] if content.has("why") else ""
-	var strength = content["strength"] if content.has("strength") else ""
-	var strength_text = ("Evidence Strength: " + strength + " Evidence") if strength != "" else ""
-	evidence_card.show_card(card_name, tex, shows_text, why_text, strength_text)
+	# No fixed strength on the card: the player chooses Weak/Medium/Strong on the next
+	# screen (consistent with Levels 2 & 3). The card's button leads into that screen.
+	evidence_card.show_card(card_name, tex, shows_text, why_text, "")
 
-# Continue pressed on the evidence card: mark the artifact collected, add it to the
-# Case File with its fixed strength, and resume movement.
+# Continue pressed on the evidence card: mark the artifact collected, then open the
+# Weak/Medium/Strong selection screen (same as Levels 2 & 3). Movement stays disabled
+# until the player picks a strength (CaseFile.open_label_mode handles that).
 func _on_card_continued():
 	var item = _pending_item
 	_pending_item = null
@@ -95,14 +105,14 @@ func _on_card_continued():
 	if collected.has(art_name):
 		collected[art_name] = true
 	item.queue_free()
-	globals.canMove = true
 	var content = card_content[art_name] if card_content.has(art_name) else {}
-	var strength = content["strength"] if content.has("strength") else "Weak"
 	var desc = content["shows"] if content.has("shows") else ""
 	var case_file = get_node_or_null("/root/Level1/CaseFile")
 	if case_file != null:
 		var shown_name = display_names[art_name] if display_names.has(art_name) else art_name
-		case_file.add_evidence(shown_name, _pending_texture, art_name, strength, desc)
+		# Open the strength-selection screen. When the player chooses, CaseFile adds the
+		# entry with that strength and emits evidence_labeled -> _on_evidence_labeled.
+		case_file.open_label_mode(shown_name, _pending_texture, art_name, desc)
 	else:
 		_after_label()
 	_pending_texture = null
@@ -119,12 +129,20 @@ func _after_label():
 		objective.bbcode_text = "[center]Objective complete.[/center]"
 	else:
 		_update_progress()
+	# Persist the collection (Case File entry + collected flag) immediately.
+	_save_progress()
 
 # Show the courtroom prompt only while the player is free to roam (hidden during
 # the Case File, dialogue, etc.), and enter the courtroom when F is pressed.
 func _process(delta):
 	if courtroom_prompt != null:
 		courtroom_prompt.visible = ready_for_courtroom and globals.canMove
+	# An artifact becoming visible (professor unlock) or being freed (collected)
+	# changes this snapshot; persist so leaving before collecting keeps the unlock.
+	var snap = _unlock_snapshot()
+	if snap != _last_unlock_snapshot:
+		_last_unlock_snapshot = snap
+		_save_progress()
 
 func _unhandled_input(event):
 	if ready_for_courtroom and globals.canMove:
@@ -159,3 +177,70 @@ func _show_completion():
 	get_node("/root/Level1/CanvasLayer/Courtroom").visible = true
 	var dialog = get_node("/root/Level1/CanvasLayer/Control/Popup")
 	dialog.launch_conversation("Level1Complete")
+
+# --- Persistence (Back / level select preserve progress; only Start resets) ---
+
+# A small string capturing, per artifact, whether it is collected and (if it still
+# exists) whether it is visible. Used only to detect changes cheaply in _process.
+func _unlock_snapshot():
+	var s = ""
+	for id in ["Bone", "Rocks", "Portrait"]:
+		var node = get_node_or_null("/root/Level1/" + id)
+		var vis = node != null and node.visible
+		s += id + ":" + str(collected.get(id, false)) + ":" + str(vis) + ";"
+	return s
+
+# Writes Level 1's current progress to the persistent global store: which artifacts
+# are collected, which have been unlocked (professor-revealed), and the Case File
+# entries. Derives "unlocked" from world state (a collected artifact was unlocked; an
+# uncollected one is unlocked iff its node is currently visible).
+func _save_progress():
+	var unlocked = {}
+	for id in ["Bone", "Rocks", "Portrait"]:
+		if collected.get(id, false):
+			unlocked[id] = true
+		else:
+			var node = get_node_or_null("/root/Level1/" + id)
+			unlocked[id] = node != null and node.visible
+	var cf = get_node_or_null("/root/Level1/CaseFile")
+	var entries = []
+	if cf != null:
+		entries = cf.collected_evidence
+	globals.save_level_progress("Level1", {
+		"collected": collected,
+		"unlocked": unlocked,
+		"case_file": entries
+	})
+
+# Re-applies saved Level 1 progress on scene load: restores the collected flags and
+# Case File entries, then rehydrates the world — collected artifacts are freed (so
+# they can't be picked up again and their professor shows the "after" line), and
+# unlocked-but-uncollected artifacts are shown with collision off (ready to pick up).
+# Locked artifacts stay hidden so their professor still offers the question menu.
+func _restore_progress():
+	var data = globals.get_level_progress("Level1")
+	if data == null:
+		return
+	if data.has("collected"):
+		collected = data["collected"]
+	var unlocked = data["unlocked"] if data.has("unlocked") else {}
+	var cf = get_node_or_null("/root/Level1/CaseFile")
+	if cf != null and data.has("case_file"):
+		cf.collected_evidence = data["case_file"]
+	for id in ["Bone", "Rocks", "Portrait"]:
+		var node = get_node_or_null("/root/Level1/" + id)
+		if node == null:
+			continue
+		if collected.get(id, false):
+			node.queue_free()
+		elif unlocked.get(id, false):
+			node.visible = true
+			var col = node.get_node_or_null("CollisionShape2D")
+			if col != null:
+				col.one_way_collision = false
+	ready_for_courtroom = all_evidence_collected()
+	if ready_for_courtroom:
+		var objective = get_node("/root/Level1/CanvasLayer/Control/Objective/Label")
+		objective.bbcode_text = "[center]Objective complete.[/center]"
+	elif _collected_count() > 0:
+		_update_progress()

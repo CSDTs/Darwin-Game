@@ -65,6 +65,74 @@ var level2Complete = [
 	["[center]Time Travel Court[/center]", "Select evidence for Darwin's defense."]
 ]
 
+# Level 3 courtroom: opening exchange, then the evidence-selection UI opens. Long
+# lines are split into short entries so no line needs scrolling. Speaker labels match
+# the courtroom character-display system (Robert Morris = the player, Charles Darwin,
+# Prosecutor, Time Travel Court).
+var level3Complete = [
+	["[center]Robert Morris[/center]", "I've returned from the Beagle with evidence from Darwin's voyage."],
+	["[center]Charles Darwin[/center]", "Good. The voyage forced me to confront ideas I could no longer ignore."],
+	["[center]Prosecutor[/center]", "Confront ideas? Darwin traveled the world studying animals, fossils, and specimens."],
+	["[center]Prosecutor[/center]", "That does not prove he rejected racism or the belief that humans were separate kinds."],
+	["[center]Robert Morris[/center]", "But the evidence from the Beagle shows more than scientific observation."],
+	["[center]Robert Morris[/center]", "It shows Darwin questioning the ideas that slaveholders used to deny the humanity of others."],
+	["[center]Charles Darwin[/center]", "What I saw made slavery impossible to excuse."],
+	["[center]Prosecutor[/center]", "Then prove it."],
+	["[center]Prosecutor[/center]", "Show this court evidence that connects Darwin's voyage to his rejection of racial separation."],
+	["[center]Time Travel Court[/center]", "Robert Morris, you have searched the Beagle."],
+	["[center]Time Travel Court[/center]", "Select evidence for Darwin's defense."]
+]
+
+# Level 3 courtroom Journal Page: Mollusca and Vertebrata path (Page1): the weak
+# argument that plays when the player presents it. Followed by the weak result screen.
+var page1Courtroom = [
+	["[center]Robert Morris[/center]", "I present the journal page on mollusks and vertebrates."],
+	["[center]Time Travel Court[/center]", "The court recognizes the evidence. Explain its relevance."],
+	["[center]Robert Morris[/center]", "This page shows Darwin thinking about connections between different kinds of life."],
+	["[center]Robert Morris[/center]", "He noticed that some groups were difficult to connect because the evidence had large gaps."],
+	["[center]Prosecutor[/center]", "So Darwin studied animals and missing links. That does not prove he rejected racism."],
+	["[center]Charles Darwin[/center]", "This page shows my scientific thinking, but it does not directly answer the moral charge."],
+	["[center]Robert Morris[/center]", "I understand. It gives background on Darwin's ideas, but not his views on human equality."],
+	["[center]Time Travel Court[/center]", "This evidence is weak. It shows Darwin studying nature, but not his rejection of racial separation."],
+	["[center]Prosecutor[/center]", "Then the defense has not proven its case."],
+	["[center]Time Travel Court[/center]", "The prosecution wins this round."]
+]
+
+# Level 3 courtroom Journal Page: Tapirs and Marsupials path (Page2): the weak
+# argument that plays when the player presents it. Followed by the weak result screen.
+var page2Courtroom = [
+	["[center]Robert Morris[/center]", "I present the journal page on tapirs and marsupials."],
+	["[center]Time Travel Court[/center]", "The court recognizes the evidence. Explain its relevance."],
+	["[center]Robert Morris[/center]", "This page shows Darwin comparing animals from different regions of the world."],
+	["[center]Robert Morris[/center]", "He was studying how geography and animal life might be connected."],
+	["[center]Prosecutor[/center]", "That may matter for natural history, but it does not prove Darwin opposed racism."],
+	["[center]Prosecutor[/center]", "The defense is confusing scientific observation with moral evidence."],
+	["[center]Charles Darwin[/center]", "This observation helped shape my science, but it is not the strongest evidence for this accusation."],
+	["[center]Robert Morris[/center]", "You're right. This page shows Darwin's developing ideas, but not his clearest rejection of racial separation."],
+	["[center]Time Travel Court[/center]", "This evidence is weak. It does not directly show Darwin challenging racist ideas about human beings."],
+	["[center]Prosecutor[/center]", "Then the accusation remains unanswered."],
+	["[center]Time Travel Court[/center]", "The prosecution wins this round."]
+]
+
+# Level 3 courtroom Darwin Journal Entry path (Page3): the strong / winning argument
+# that plays when the player presents it. Followed by the strong result screen.
+var page3Courtroom = [
+	["[center]Robert Morris[/center]", "I present Darwin's journal entry on slavery and human equality."],
+	["[center]Time Travel Court[/center]", "The court recognizes the evidence. Explain its relevance."],
+	["[center]Robert Morris[/center]", "Darwin wrote, \"Animals whom we have made our slaves we do not like to consider our equals.\""],
+	["[center]Robert Morris[/center]", "He then asked whether slaveholders wished to make \"the black man\" an \"other kind.\""],
+	["[center]Prosecutor[/center]", "A harsh criticism of slaveholders, yes. But how does that connect to Darwin's ideas about human origins?"],
+	["[center]Robert Morris[/center]", "It shows Darwin understood the logic behind racist biology."],
+	["[center]Robert Morris[/center]", "Slaveholders wanted to treat Black people as less than fully human, so they needed to imagine them as a different kind of being."],
+	["[center]Charles Darwin[/center]", "And I rejected that separation. Human differences did not make people separate species of unequal worth."],
+	["[center]Robert Morris[/center]", "Exactly. This entry shows Darwin challenging the racist idea that humanity was divided into separate kinds."],
+	["[center]Time Travel Court[/center]", "This evidence is powerful."],
+	["[center]Time Travel Court[/center]", "Darwin's journal entry connects his opposition to slavery with his belief in shared human origin."],
+	["[center]Time Travel Court[/center]", "It is strong evidence that Darwin rejected racial separation."],
+	["[center]Prosecutor[/center]", "The defense has shown that Darwin's thinking challenged the biology of racism."],
+	["[center]Time Travel Court[/center]", "The defense wins this round."]
+]
+
 # Level 2 courtroom Regular Plate path: the weak-evidence argument that plays when
 # the player presents the plate. Followed by the weak result screen.
 var plateCourtroom = [
@@ -511,6 +579,25 @@ var captain = [
 	["Robert Morris", "Thank you, Captain! It will be super helpful."],
 ]
 
+# Level 3 SECOND Captain conversation: plays when the player returns to Captain
+# FitzRoy after collecting all 3 pages. When it finishes, Level 3 shows a choice screen
+# (Observe Finches / Return to Court) — see the captainReturn handler in load_dialog.
+var captainReturn = [
+	["Captain Fitzroy", "So, you've gathered your evidence."],
+	["Robert Morris", "Yes. I'm ready to bring it before the court."],
+	["Captain Fitzroy", "Before we return, there is one nearby stop you may take."],
+	["Captain Fitzroy", "The Galápagos are close. You can spend a short while observing finches, or we can sail directly back to the courtroom."],
+]
+
+# Short follow-up lines after the player picks on the choice screen. FinchChoiceYes
+# leads to the Finch Minigame; FinchChoiceNo leads straight to the Level 3 courtroom.
+var finchChoiceYes = [
+	["Captain Fitzroy", "Very well. Make it brief."],
+]
+var finchChoiceNo = [
+	["Captain Fitzroy", "Then we return at once."],
+]
+
 var page1 = [
 	["Robert Morris", "Mr. Darwin, I hope this is the evidence we need."],
 	["Robert Morris", "I think it is a journal entry about mollusca and vertebrate..."],	
@@ -536,10 +623,8 @@ var page3 = [
 	["Robert Morris", "His theory of evolution actually comes from his abolitionist commitments."],	
 	["Time Travel Court","Please, elaborate on this."],	
 	["Robert Morris", "Darwin’s family has been devoted to the anti-slavery cause, as you can see in this medalion."],	
-	["Robert Morris", "Darwin himself is no less committed."],	
-	["Robert Morris", "His journal mentioned John Edmondstone, a Black teacher at the University of Edinburgh..."],	
-	["Robert Morris", "Proof that the black mind is equal to that of whites"],	
-	["Robert Morris", "And most telling, he took the abolitionist idea--“we are all brothers and sisters”--as a model for human change in skin color."],	
+	["Robert Morris", "Darwin himself is no less committed."],
+	["Robert Morris", "And most telling, he took the abolitionist idea--“we are all brothers and sisters”--as a model for human change in skin color."],
 	["Robert Morris", "Which then gave him a model for all animal change."],	
 	["Robert Morris", "The very idea of evolution comes from Darwin’s strong anti-racist view."],	
 	["Time Travel Court","This is all the evidence I need. Mr. Morris, we truly appreciate your hard work to help us find out the truth."],	
@@ -611,6 +696,12 @@ func init_conversation(conversation):
 		main = failedAttempt
 	elif conversation == "Captain":
 		main = captain
+	elif conversation == "CaptainReturn":
+		main = captainReturn
+	elif conversation == "FinchChoiceYes":
+		main = finchChoiceYes
+	elif conversation == "FinchChoiceNo":
+		main = finchChoiceNo
 	elif conversation =="CaptainAfter":
 		main = failedAttempt2
 	elif conversation =="Page1":
@@ -623,6 +714,14 @@ func init_conversation(conversation):
 		main = level1Complete
 	elif conversation == "Level2Complete":
 		main = level2Complete
+	elif conversation == "Level3Complete":
+		main = level3Complete
+	elif conversation == "Page1Courtroom":
+		main = page1Courtroom
+	elif conversation == "Page2Courtroom":
+		main = page2Courtroom
+	elif conversation == "Page3Courtroom":
+		main = page3Courtroom
 	elif conversation == "PlateCourtroom":
 		main = plateCourtroom
 	elif conversation == "TeapotCourtroom":
@@ -896,6 +995,12 @@ func load_dialog():
 			var evidence_select_l2 = get_node_or_null("/root/Level2/EvidenceSelect")
 			if evidence_select_l2 != null:
 				evidence_select_l2.open()
+		elif main == level3Complete:
+			# Level 3: same structure as Levels 1 & 2 — keep the courtroom backdrop and
+			# open the Level 3 evidence selection (populated from Level 3's Case File).
+			var evidence_select_l3 = get_node_or_null("/root/Level3/EvidenceSelect")
+			if evidence_select_l3 != null:
+				evidence_select_l3.open()
 		elif main == rocksCourtroom or main == boneCourtroom or main == portraitCourtroom:
 			# Courtroom argument finished: show the result screen (weak for
 			# Rocks/Bone, strong for Portrait — EvidenceSelect decides from the
@@ -910,6 +1015,13 @@ func load_dialog():
 			var evidence_select_p = get_node_or_null("/root/Level2/EvidenceSelect")
 			if evidence_select_p != null:
 				evidence_select_p.show_result()
+		elif main == page1Courtroom or main == page2Courtroom or main == page3Courtroom:
+			# Level 3 argument finished: show the result screen (weak for Page1/Page2,
+			# strong for Page3 / the Darwin Journal Entry — EvidenceSelect decides from
+			# the stored selection, which uses the artifact's intended strength).
+			var evidence_select_l3r = get_node_or_null("/root/Level3/EvidenceSelect")
+			if evidence_select_l3r != null:
+				evidence_select_l3r.show_result()
 		elif main == uncle:
 			get_node("/root/Level2/Teapot").visible = true
 			get_node("/root/Level2/Teapot/CollisionShape2D").one_way_collision = false
@@ -949,22 +1061,35 @@ func load_dialog():
 			var level3 = get_node_or_null("/root/Level3")
 			if level3 != null and level3.has_method("mark_fitzroy_spoken"):
 				level3.mark_fitzroy_spoken()
-		elif main == page1:
-			get_node("/root/Level3/CanvasLayer/Courtroom").visible = false
-			# The page is now collected (and freed) before court, so guard the free.
-			var p1 = get_node_or_null("/root/Level3/Page1")
-			if p1 != null:
-				p1.queue_free()
-		elif main == page2:
-			get_node("/root/Level3/CanvasLayer/Courtroom").visible = false
-			var p2 = get_node_or_null("/root/Level3/Page2")
-			if p2 != null:
-				p2.queue_free()
+		elif main == captainReturn:
+			# The second Captain conversation (after all 3 pages collected) is done:
+			# hide his portrait and show the choice screen (Observe Finches / Return to
+			# Court). The transition happens after the player picks (see below).
+			get_node("/root/Level3/Captain/CanvasLayer/Control").visible = false
+			var level3ret = get_node_or_null("/root/Level3")
+			if level3ret != null and level3ret.has_method("show_fitzroy_choice"):
+				level3ret.show_fitzroy_choice()
+		elif main == finchChoiceYes:
+			# Player chose "Observe Finches": head to the Finch Minigame scene.
+			var l3fy = get_node_or_null("/root/Level3")
+			if l3fy != null and l3fy.has_method("go_to_finch_minigame"):
+				l3fy.go_to_finch_minigame()
+		elif main == finchChoiceNo:
+			# Player chose "Return to Court": enter the Level 3 courtroom directly.
+			var l3fn = get_node_or_null("/root/Level3")
+			if l3fn != null and l3fn.has_method("mark_fitzroy_return"):
+				l3fn.mark_fitzroy_return()
+		elif main == page1 or main == page2:
+			# Level 3 weak evidence paths: the "not the evidence we need... let me try
+			# again" argument just played, so re-open the evidence selection screen and
+			# let the player present a different artifact.
+			var es_retry = get_node_or_null("/root/Level3/EvidenceSelect")
+			if es_retry != null:
+				es_retry.open()
 		elif main == page3:
+			# Level 3 winning evidence path (the Darwin Journal Entry): the victory
+			# argument played, so close the courtroom and reveal the next-stage prompt.
 			get_node("/root/Level3/CanvasLayer/Courtroom").visible = false
-			var p3 = get_node_or_null("/root/Level3/Page3")
-			if p3 != null:
-				p3.queue_free()
 			get_node("/root/Level3/CanvasLayer/NextLevel").visible = true
 			
 	dialog_index += 1
@@ -1117,7 +1242,7 @@ var courtroom_shown = {"Court": false, "Darwin": false, "Morris": false, "Prosec
 # True while one of the Level 1 courtroom conversations is playing, so the
 # speaker-to-portrait logic only runs during the courtroom scene.
 func _is_courtroom_convo():
-	return main == level1Complete or main == level2Complete or main == plateCourtroom or main == teapotCourtroom or main == sermonNotesCourtroom or main == medallionCourtroom or main == rocksCourtroom or main == boneCourtroom or main == portraitCourtroom
+	return main == level1Complete or main == level2Complete or main == level3Complete or main == plateCourtroom or main == teapotCourtroom or main == sermonNotesCourtroom or main == medallionCourtroom or main == rocksCourtroom or main == boneCourtroom or main == portraitCourtroom or main == page1Courtroom or main == page2Courtroom or main == page3Courtroom
 
 # Strips the [center] bbcode tags from a speaker label and trims whitespace.
 func _plain_name(raw):

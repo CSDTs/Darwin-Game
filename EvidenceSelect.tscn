@@ -25,7 +25,6 @@ __meta__ = {
 }
 
 [node name="Dim" type="ColorRect" parent="Root"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -53,7 +52,6 @@ margin_left = 240.0
 margin_top = 170.0
 margin_right = 1040.0
 margin_bottom = 210.0
-mouse_filter = 2
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.25, 0.18, 0.1, 1 )
 text = "Select Evidence for Darwin's Defense"
@@ -76,15 +74,12 @@ margin_left = 240.0
 margin_top = 522.0
 margin_right = 1040.0
 margin_bottom = 560.0
-mouse_filter = 2
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.2, 0.14, 0.08, 1 )
-text = ""
 align = 1
 valign = 1
 
 [node name="Result" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -96,6 +91,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.55 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" type="TextureRect" parent="Result"]
 anchor_left = 0.5
@@ -123,7 +121,6 @@ margin_left = -360.0
 margin_top = -205.0
 margin_right = 360.0
 margin_bottom = -160.0
-mouse_filter = 2
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.2, 0.14, 0.08, 1 )
 text = "Courtroom Result: Weak Evidence"
@@ -139,13 +136,15 @@ margin_left = -360.0
 margin_top = -120.0
 margin_right = 360.0
 margin_bottom = -50.0
-mouse_filter = 2
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.2, 0.14, 0.08, 1 )
 text = "Defense: 0
 Prosecution: 1"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Body" type="Label" parent="Result"]
 anchor_left = 0.5
@@ -156,7 +155,6 @@ margin_left = -330.0
 margin_top = -10.0
 margin_right = 330.0
 margin_bottom = 110.0
-mouse_filter = 2
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.2, 0.14, 0.08, 1 )
 text = "The court is not convinced.
@@ -174,7 +172,6 @@ margin_left = -360.0
 margin_top = 130.0
 margin_right = 360.0
 margin_bottom = 175.0
-mouse_filter = 2
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.2, 0.14, 0.08, 1 )
 text = "The prosecution wins this round."

@@ -128,8 +128,11 @@ func _build():
 	button_bar.add_child(continue_button)
 
 # Fills in and shows the card, blocking movement until the player continues.
-func show_card(art_name, texture, shows_text, why_text, strength_text = ""):
+func show_card(art_name, texture, shows_text, why_text, strength_text = "", wrap_title = false):
 	title_label.text = "Artifact Found: " + art_name
+	# Long titles can opt into wrapping onto two lines instead of overflowing off the
+	# panel; defaults off, so cards with short titles render exactly as before.
+	title_label.autowrap = wrap_title
 	image_rect.texture = texture
 	if strength_text != "":
 		strength_label.text = strength_text

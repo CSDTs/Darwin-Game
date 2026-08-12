@@ -11,6 +11,10 @@ export (String, FILE) var level2
 export (String, FILE) var level3
 
 func _ready():
+	# NOTE: the trial score is intentionally NOT reset here. The main menu is reached
+	# both by starting a new game AND by the in-level Back button, so resetting on menu
+	# load would wipe the player's progress every time they press Back. The reset now
+	# happens only when the player presses Start (see start_menu_button_pressed "run").
 	start_menu = $Start_Menu
 	level_select_menu = $Level_Select_Menu
 	instructions = $Instructions
@@ -49,6 +53,10 @@ func start_menu_button_pressed(button_name):
 	elif button_name == "quit":
 		get_tree().quit()
 	elif button_name == 'run':
+		# Start = the intentional "new game". This is the ONLY place the full trial
+		# resets: cumulative Defense/Prosecution scores back to 0-0 and the per-level
+		# "result already applied" flags cleared. Back / level select never reset.
+		get_node("/root/Globals").reset_trial()
 		instructions.visible = true
 		#get_node("/root/Globals").load_new_scene(court1)
 
