@@ -433,12 +433,12 @@ func _on_choice_court():
 func go_to_finch_minigame():
 	fitzroy_return_done = true
 	_save_progress()
-	var finch_path = "res://FinchMinigame.tscn"
+	var finch_path = "res://DarwinFinches.tscn"
 	if ResourceLoader.exists(finch_path):
 		get_tree().change_scene(finch_path)
 	else:
 		# Safety: don't crash if the minigame scene is missing — go to court instead.
-		push_warning("FinchMinigame.tscn not found; entering the courtroom instead.")
+		push_warning("DarwinFinches.tscn not found; entering the courtroom instead.")
 		call_deferred("_enter_courtroom")
 
 # --- Parchment styling helpers for the choice screen ---

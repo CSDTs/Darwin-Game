@@ -1,0 +1,35 @@
+﻿index	name	center_x	center_y	file	width	height
+0	table	240	180	00_table.png	480	360
+1	galapagos_desert	240	180	01_galapagos_desert.png	480	360
+2	vegetarian_stage	240	180	02_vegetarian_stage.png	480	360
+3	ground_stage	240	180	03_ground_stage.png	480	360
+4	cactus_stage	240	180	04_cactus_stage.png	480	360
+5	net	209	38.75	05_net.png	253	175
+6	placemarker	7.5	7.5	06_placemarker.png	15	15
+7	placemarker	7.5	7.5	07_placemarker.png	15	15
+8	placemarker	7.5	7.5	08_placemarker.png	15	15
+9	placemarker	7.5	7.5	09_placemarker.png	15	15
+10	ground finch head	100	72	10_ground_finch_head.png	200	144
+11	tree finch head	52	37.5	11_tree_finch_head.png	104	75
+12	cactus finch head	50.5	30	12_cactus_finch_head.png	101	60
+13	warbler finch head	52	36.5	13_warbler_finch_head.png	104	73
+14	speaking_darwin	71	75	14_speaking_darwin.png	142	150
+15	box2	47	75	15_box2.png	94	150
+16	wirecutter pliers	55.5	44	16_wirecutter_pliers.png	111	88
+17	TWEEZER	89.5	110	17_TWEEZER.png	179	220
+18	gripping pliers	55.5	44	18_gripping_pliers.png	111	88
+19	needlenose pliers	56.5	44.5	19_needlenose_pliers.png	113	89
+20	fly	25	25	20_fly.png	50	50
+21	fly	25	25	21_fly.png	50	50
+22	Cactus_bud	50	50	22_Cactus_bud.png	100	100
+23	berries	50	33	23_berries.png	100	66
+24	ground finch flying	50	36	24_ground_finch_flying.png	100	72
+25	ground finch	50	36	25_ground_finch.png	100	72
+26	warbler finch flying	50	36	26_warbler_finch_flying.png	100	72
+27	warbler finch	50	35	27_warbler_finch.png	100	70
+28	fly	25	25	28_fly.png	50	50
+29	seed	50	37.5	29_seed.png	100	75
+30	cactus finch flight	48.5	50	30_cactus_finch_flight.png	97	100
+31	cactus finch	57	38.75	31_cactus_finch.png	97	100
+32	tree finch flight	68	50	32_tree_finch_flight.png	136	100
+33	tree finch	70.5	50	33_tree_finch.png	141	100
